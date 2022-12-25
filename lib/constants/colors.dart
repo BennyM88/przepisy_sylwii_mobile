@@ -14,4 +14,5 @@ class CustomColors {
   static const Color neutral95 = Color(0xFFEEEFF0);
   static const Color neutral99 = Color(0xFFF9F9FA);
   static const Color neutral100 = Color(0xFFFFFFFF);
+  static const Color pink = Color(0xFFF7E1DD);
 }

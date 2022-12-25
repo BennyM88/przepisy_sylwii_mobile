@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/category_list.dart';
+import 'package:przepisy_sylwii_mobile/view/widgets/recipes_list.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -14,9 +15,9 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20.h),
+            SizedBox(height: 28.h),
             _topBar(),
-            SizedBox(height: 50.h),
+            SizedBox(height: 42.h),
             Padding(
               padding: EdgeInsets.only(left: 24.w),
               child: Text(
@@ -27,6 +28,7 @@ class HomePage extends StatelessWidget {
             SizedBox(height: 16.h),
             CategoryList(),
             SizedBox(height: 16.h),
+            RecipesList(),
           ],
         ),
       ),
@@ -39,12 +41,16 @@ class HomePage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text(
+            'Cześć,',
+            style: CustomTypography.uRegular18,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Cześć,',
-                style: CustomTypography.uRegular18,
+                'Gal Anonim',
+                style: CustomTypography.uBold22,
               ),
               const Spacer(),
               InkWell(
@@ -63,10 +69,6 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ],
-          ),
-          Text(
-            'Gal Anonim',
-            style: CustomTypography.uBold22,
           ),
         ],
       ),
