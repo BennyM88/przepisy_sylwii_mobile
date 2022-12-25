@@ -28,7 +28,7 @@ class CategoryList extends StatelessWidget {
       padding: EdgeInsets.only(right: 8.w),
       child: Container(
         decoration: BoxDecoration(
-          color: CustomColors.neutral80.withOpacity(0.22),
+          color: CustomColors.neutral95.withOpacity(0.5),
           borderRadius: BorderRadius.circular(12.r),
         ),
         child: Padding(
