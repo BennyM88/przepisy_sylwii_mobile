@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
+import 'package:przepisy_sylwii_mobile/view/pages/recipe_details_page.dart';
 
 class RecipesList extends StatelessWidget {
   const RecipesList({super.key});
@@ -17,7 +18,15 @@ class RecipesList extends StatelessWidget {
           physics: const ClampingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           itemCount: 10,
-          itemBuilder: (context, index) => _buildRecipeBox(),
+          itemBuilder: (context, index) => GestureDetector(
+            onTap: () async => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const RecipeDetailsPage(),
+              ),
+            ),
+            child: _buildRecipeBox(),
+          ),
         ),
       ),
     );
@@ -74,12 +83,16 @@ class RecipesList extends StatelessWidget {
                   Text(
                     'Suflet czekoladowy',
                     style: CustomTypography.uBold18,
+                    textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 8.h),
-                  Text(
-                    '"Jakis opis fajnego dania, naprawde."',
-                    style: CustomTypography.uRegular14n40,
-                    textAlign: TextAlign.center,
+                  Flexible(
+                    child: Text(
+                      '"Jakis opis fajnego dania, naprawde."',
+                      style: CustomTypography.uRegular14n40,
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.fade,
+                    ),
                   ),
                   SizedBox(height: 12.h),
                   Text(

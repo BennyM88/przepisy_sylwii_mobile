@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
+import 'package:przepisy_sylwii_mobile/view/pages/settings_page.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/category_list.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/recipes_list.dart';
 
@@ -16,7 +17,7 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 28.h),
-            _topBar(),
+            _topBar(context),
             SizedBox(height: 42.h),
             Padding(
               padding: EdgeInsets.only(left: 24.w),
@@ -35,7 +36,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _topBar() {
+  Widget _topBar(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 24.w),
       child: Column(
@@ -62,7 +63,12 @@ class HomePage extends StatelessWidget {
               ),
               SizedBox(width: 28.w),
               InkWell(
-                onTap: () {},
+                onTap: () async => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SettingsPage(),
+                  ),
+                ),
                 child: Icon(
                   Icons.notes,
                   size: 24.sp,
