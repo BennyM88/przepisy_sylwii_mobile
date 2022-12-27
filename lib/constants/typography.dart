@@ -64,7 +64,7 @@ class CustomTypography {
     fontSize: 14.sp,
     fontWeight: regular,
     fontFamily: ubuntuFontRegular,
-    color: CustomColors.neutral40,
+    color: CustomColors.neutral40.withOpacity(0.5),
   );
 
   static TextStyle uRegular12n40 = TextStyle(
