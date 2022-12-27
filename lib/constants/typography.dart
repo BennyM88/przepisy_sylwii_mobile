@@ -59,4 +59,11 @@ class CustomTypography {
     fontFamily: ubuntuFontRegular,
     color: CustomColors.neutral40,
   );
+
+  static TextStyle uRegular12n40 = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: regular,
+    fontFamily: ubuntuFontRegular,
+    color: CustomColors.neutral40,
+  );
 }

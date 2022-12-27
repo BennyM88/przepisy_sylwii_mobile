@@ -64,7 +64,7 @@ class RecipesList extends StatelessWidget {
             bottom: 25.h,
             child: Container(
               width: 240.w,
-              height: 140.h,
+              height: 130.h,
               padding: EdgeInsets.all(16.h),
               decoration: BoxDecoration(
                 color: CustomColors.pink,
@@ -86,13 +86,10 @@ class RecipesList extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 8.h),
-                  Flexible(
-                    child: Text(
-                      '"Jakis opis fajnego dania, naprawde."',
-                      style: CustomTypography.uRegular14n40,
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.fade,
-                    ),
+                  Text(
+                    '"Jakis opis fajnego dania, naprawde."',
+                    style: CustomTypography.uRegular14n40,
+                    textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 12.h),
                   Text(

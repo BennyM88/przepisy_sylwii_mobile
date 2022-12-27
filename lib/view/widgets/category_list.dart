@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:przepisy_sylwii_mobile/constants/category_list.dart';
 import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 
@@ -16,14 +17,14 @@ class CategoryList extends StatelessWidget {
           shrinkWrap: true,
           physics: const ClampingScrollPhysics(),
           scrollDirection: Axis.horizontal,
-          itemCount: 5,
-          itemBuilder: (context, index) => _buildCategoryBox(),
+          itemCount: categoryList.length,
+          itemBuilder: (_, index) => _buildCategoryBox(categoryList[index]),
         ),
       ),
     );
   }
 
-  Widget _buildCategoryBox() {
+  Widget _buildCategoryBox(String categoryName) {
     return Padding(
       padding: EdgeInsets.only(right: 8.w),
       child: Container(
@@ -35,7 +36,7 @@ class CategoryList extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 22.w),
           child: Center(
             child: Text(
-              'Śniadanie',
+              categoryName,
               style: CustomTypography.uRegular14,
             ),
           ),
