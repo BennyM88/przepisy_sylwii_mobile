@@ -93,7 +93,7 @@ class RecipesList extends StatelessWidget {
                   ),
                   SizedBox(height: 12.h),
                   Text(
-                    '40 MIN',
+                    '40 min',
                     style: CustomTypography.uBold14,
                   ),
                 ],

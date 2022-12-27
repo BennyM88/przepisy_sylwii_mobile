@@ -8,14 +8,21 @@ class CustomTypography {
   static const String ubuntuFontBold = 'UbuntuBold';
 
   // Font weights:
-  static const FontWeight bold = FontWeight.w700;
-  static const FontWeight regular = FontWeight.w400;
+  static const FontWeight bold = FontWeight.w800;
+  static const FontWeight regular = FontWeight.w500;
 
   static TextStyle uRegular18 = TextStyle(
     fontSize: 18.sp,
     fontWeight: regular,
     fontFamily: ubuntuFontRegular,
     color: CustomColors.neutral00,
+  );
+
+  static TextStyle uRegular16n100 = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: regular,
+    fontFamily: ubuntuFontRegular,
+    color: CustomColors.neutral100,
   );
 
   static TextStyle uBold22 = TextStyle(

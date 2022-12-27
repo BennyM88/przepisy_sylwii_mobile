@@ -10,6 +10,15 @@ class RecipeDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {},
+        label: Text(
+          'Zacznij gotować',
+          style: CustomTypography.uRegular16n100,
+        ),
+        backgroundColor: CustomColors.neutral00,
+      ),
       body: SlidingUpPanel(
         minHeight: 0.6.sh,
         maxHeight: 0.75.sh,
@@ -46,7 +55,7 @@ class RecipeDetailsPage extends StatelessWidget {
         ),
         Positioned(
           top: 70.h,
-          right: 20.w,
+          right: 25.w,
           child: InkWell(
             onTap: () {},
             child: Icon(
@@ -69,12 +78,6 @@ class RecipeDetailsPage extends StatelessWidget {
           Text(
             'Suflet czekoladowy',
             style: CustomTypography.uBold22,
-          ),
-          SizedBox(height: 6.h),
-          Container(
-            color: CustomColors.neutral00,
-            height: 2.h,
-            width: 110.w,
           ),
           SizedBox(height: 6.h),
           Row(
