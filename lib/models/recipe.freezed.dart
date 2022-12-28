@@ -23,6 +23,7 @@ mixin _$Recipe {
   String get dishName => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
+  String get desc => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
   int get time => throw _privateConstructorUsedError;
   List<String> get ingredients => throw _privateConstructorUsedError;
@@ -42,6 +43,7 @@ abstract class $RecipeCopyWith<$Res> {
       {String dishName,
       String url,
       String category,
+      String desc,
       int amount,
       int time,
       List<String> ingredients,
@@ -64,6 +66,7 @@ class _$RecipeCopyWithImpl<$Res, $Val extends Recipe>
     Object? dishName = null,
     Object? url = null,
     Object? category = null,
+    Object? desc = null,
     Object? amount = null,
     Object? time = null,
     Object? ingredients = null,
@@ -81,6 +84,10 @@ class _$RecipeCopyWithImpl<$Res, $Val extends Recipe>
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      desc: null == desc
+          ? _value.desc
+          : desc // ignore: cast_nullable_to_non_nullable
               as String,
       amount: null == amount
           ? _value.amount
@@ -112,6 +119,7 @@ abstract class _$$_RecipeCopyWith<$Res> implements $RecipeCopyWith<$Res> {
       {String dishName,
       String url,
       String category,
+      String desc,
       int amount,
       int time,
       List<String> ingredients,
@@ -131,6 +139,7 @@ class __$$_RecipeCopyWithImpl<$Res>
     Object? dishName = null,
     Object? url = null,
     Object? category = null,
+    Object? desc = null,
     Object? amount = null,
     Object? time = null,
     Object? ingredients = null,
@@ -148,6 +157,10 @@ class __$$_RecipeCopyWithImpl<$Res>
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      desc: null == desc
+          ? _value.desc
+          : desc // ignore: cast_nullable_to_non_nullable
               as String,
       amount: null == amount
           ? _value.amount
@@ -176,6 +189,7 @@ class _$_Recipe implements _Recipe {
       {required this.dishName,
       this.url = '',
       this.category = '',
+      this.desc = '',
       this.amount = 0,
       this.time = 0,
       final List<String> ingredients = const [],
@@ -194,6 +208,9 @@ class _$_Recipe implements _Recipe {
   @override
   @JsonKey()
   final String category;
+  @override
+  @JsonKey()
+  final String desc;
   @override
   @JsonKey()
   final int amount;
@@ -220,7 +237,7 @@ class _$_Recipe implements _Recipe {
 
   @override
   String toString() {
-    return 'Recipe(dishName: $dishName, url: $url, category: $category, amount: $amount, time: $time, ingredients: $ingredients, preparation: $preparation)';
+    return 'Recipe(dishName: $dishName, url: $url, category: $category, desc: $desc, amount: $amount, time: $time, ingredients: $ingredients, preparation: $preparation)';
   }
 
   @override
@@ -233,6 +250,7 @@ class _$_Recipe implements _Recipe {
             (identical(other.url, url) || other.url == url) &&
             (identical(other.category, category) ||
                 other.category == category) &&
+            (identical(other.desc, desc) || other.desc == desc) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.time, time) || other.time == time) &&
             const DeepCollectionEquality()
@@ -248,6 +266,7 @@ class _$_Recipe implements _Recipe {
       dishName,
       url,
       category,
+      desc,
       amount,
       time,
       const DeepCollectionEquality().hash(_ingredients),
@@ -272,6 +291,7 @@ abstract class _Recipe implements Recipe {
       {required final String dishName,
       final String url,
       final String category,
+      final String desc,
       final int amount,
       final int time,
       final List<String> ingredients,
@@ -285,6 +305,8 @@ abstract class _Recipe implements Recipe {
   String get url;
   @override
   String get category;
+  @override
+  String get desc;
   @override
   int get amount;
   @override

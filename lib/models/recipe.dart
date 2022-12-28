@@ -9,6 +9,7 @@ class Recipe with _$Recipe {
     required String dishName,
     @Default('') String url,
     @Default('') String category,
+    @Default('') String desc,
     @Default(0) int amount,
     @Default(0) int time,
     @Default([]) List<String> ingredients,

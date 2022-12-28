@@ -12,4 +12,18 @@ class RecipeCubit extends Cubit<RecipeState> {
   final FirebaseRepository _firebaseRepository;
 
   RecipeCubit(this._firebaseRepository) : super(const RecipeState.loading());
+
+  Future<void> loadRecipes() async {
+    try {
+      List<Recipe> allRecipes = await _firebaseRepository.getAllRecipes();
+
+      emit(
+        RecipeState.loaded(allRecipes: allRecipes),
+      );
+    } on Exception catch (e) {
+      emit(
+        RecipeState.error(errorMessage: e.toString()),
+      );
+    }
+  }
 }

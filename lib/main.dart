@@ -6,11 +6,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:przepisy_sylwii_mobile/constants/colors.dart';
+import 'package:przepisy_sylwii_mobile/core/main_provider.dart';
 import 'package:przepisy_sylwii_mobile/firebase_options.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
-import 'package:przepisy_sylwii_mobile/models/recipe.dart';
 import 'package:przepisy_sylwii_mobile/services/config_reader/config_reader.dart';
-import 'package:przepisy_sylwii_mobile/services/firebase_repository/firebase_repository.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/home_page.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/enter_exit_transition.dart';
 
@@ -27,8 +26,6 @@ void main() async {
   );
   configureDependencies();
   await signIn();
-  FirebaseRepository firebaseRepository = getIt.get<FirebaseRepository>();
-  List<Recipe> x = await firebaseRepository.getAllRecipes();
 
   runApp(const MyApp());
 }
@@ -41,21 +38,23 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(390, 844),
       builder: (context, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'PrzepisySylwii',
-          theme: ThemeData(
-            brightness: Brightness.light,
-            scaffoldBackgroundColor: CustomColors.neutral100,
-            pageTransitionsTheme: PageTransitionsTheme(
-              builders: {
-                TargetPlatform.android: EnterExitTransitionsBuilder(),
-                TargetPlatform.iOS:
-                    const CupertinoPageTransitionsBuilderCustomBackGestureWidth(),
-              },
+        return MainProvider(
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'PrzepisySylwii',
+            theme: ThemeData(
+              brightness: Brightness.light,
+              scaffoldBackgroundColor: CustomColors.neutral100,
+              pageTransitionsTheme: PageTransitionsTheme(
+                builders: {
+                  TargetPlatform.android: EnterExitTransitionsBuilder(),
+                  TargetPlatform.iOS:
+                      const CupertinoPageTransitionsBuilderCustomBackGestureWidth(),
+                },
+              ),
             ),
+            home: HomePage(),
           ),
-          home: HomePage(),
         );
       },
     );

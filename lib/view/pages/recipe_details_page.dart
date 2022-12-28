@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
+import 'package:przepisy_sylwii_mobile/models/recipe.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class RecipeDetailsPage extends StatelessWidget {
-  const RecipeDetailsPage({super.key});
+  final Recipe recipe;
+
+  const RecipeDetailsPage({super.key, required this.recipe});
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +39,8 @@ class RecipeDetailsPage extends StatelessWidget {
   Widget _body(BuildContext context) {
     return Stack(
       children: [
-        Image.asset(
-          'assets/images/suflet.jpg',
+        Image.network(
+          recipe.url,
           height: 380.h,
           fit: BoxFit.cover,
         ),
@@ -76,14 +79,14 @@ class RecipeDetailsPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Suflet czekoladowy',
+            recipe.dishName,
             style: CustomTypography.uBold22,
           ),
           SizedBox(height: 6.h),
           Row(
             children: [
               Text(
-                '40 min',
+                '${recipe.time} min',
                 style: CustomTypography.uRegular12n40,
               ),
               SizedBox(width: 6.h),
@@ -94,7 +97,7 @@ class RecipeDetailsPage extends StatelessWidget {
               ),
               SizedBox(width: 6.h),
               Text(
-                '5 porcji',
+                _getAmount(recipe.amount),
                 style: CustomTypography.uRegular12n40,
               ),
             ],
@@ -102,5 +105,17 @@ class RecipeDetailsPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String _getAmount(int amount) {
+    String result = '';
+    if (amount == 1) {
+      result = 'porcja';
+    } else if (amount > 1 && amount < 5) {
+      result = 'porcje';
+    } else {
+      result = 'porcji';
+    }
+    return '$amount $result';
   }
 }

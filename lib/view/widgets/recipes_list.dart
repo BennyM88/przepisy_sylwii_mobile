@@ -1,11 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
+import 'package:przepisy_sylwii_mobile/core/cubit/recipe_cubit.dart';
+import 'package:przepisy_sylwii_mobile/injection.dart';
+import 'package:przepisy_sylwii_mobile/models/recipe.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/recipe_details_page.dart';
 
-class RecipesList extends StatelessWidget {
+class RecipesList extends StatefulWidget {
   const RecipesList({super.key});
+
+  @override
+  State<RecipesList> createState() => _RecipesListState();
+}
+
+class _RecipesListState extends State<RecipesList> {
+  @override
+  void initState() {
+    super.initState();
+    initCubit();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,26 +28,33 @@ class RecipesList extends StatelessWidget {
       padding: EdgeInsets.only(left: 24.w),
       child: SizedBox(
         height: 390.h,
-        child: ListView.builder(
-          shrinkWrap: true,
-          physics: const ClampingScrollPhysics(),
-          scrollDirection: Axis.horizontal,
-          itemCount: 10,
-          itemBuilder: (context, index) => GestureDetector(
-            onTap: () async => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const RecipeDetailsPage(),
+        child: BlocBuilder<RecipeCubit, RecipeState>(
+          builder: (_, state) => state.when(
+            loading: () => CircularProgressIndicator(),
+            loaded: (recipes) => ListView.builder(
+              shrinkWrap: true,
+              physics: const ClampingScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              itemCount: recipes.length,
+              itemBuilder: (context, index) => GestureDetector(
+                onTap: () async => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        RecipeDetailsPage(recipe: recipes[index]),
+                  ),
+                ),
+                child: _buildRecipeBox(recipes[index]),
               ),
             ),
-            child: _buildRecipeBox(),
+            error: (errorMessage) => Text(errorMessage!),
           ),
         ),
       ),
     );
   }
 
-  Widget _buildRecipeBox() {
+  Widget _buildRecipeBox(Recipe recipe) {
     return Padding(
       padding: EdgeInsets.fromLTRB(0, 0, 40.w, 0),
       child: Stack(
@@ -53,8 +75,8 @@ class RecipesList extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16.r),
-              child: Image.asset(
-                'assets/images/suflet.jpg',
+              child: Image.network(
+                recipe.url,
                 fit: BoxFit.cover,
               ),
             ),
@@ -80,19 +102,19 @@ class RecipesList extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'Suflet czekoladowy',
+                    recipe.dishName,
                     style: CustomTypography.uBold18,
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 8.h),
                   Text(
-                    '"Jakis opis fajnego dania, naprawde."',
+                    '"${recipe.desc}"',
                     style: CustomTypography.uRegular14n40,
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 12.h),
                   Text(
-                    '40 min',
+                    '${recipe.time} min',
                     style: CustomTypography.uBold14,
                   ),
                 ],
@@ -103,4 +125,8 @@ class RecipesList extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<void> initCubit() async {
+  await getIt<RecipeCubit>().loadRecipes();
 }
