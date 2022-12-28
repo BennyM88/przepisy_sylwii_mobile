@@ -7,7 +7,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/firebase_options.dart';
+import 'package:przepisy_sylwii_mobile/injection.dart';
+import 'package:przepisy_sylwii_mobile/models/recipe.dart';
 import 'package:przepisy_sylwii_mobile/services/config_reader/config_reader.dart';
+import 'package:przepisy_sylwii_mobile/services/firebase_repository/firebase_repository.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/home_page.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/enter_exit_transition.dart';
 
@@ -22,7 +25,10 @@ void main() async {
   SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
   );
+  configureDependencies();
   await signIn();
+  FirebaseRepository firebaseRepository = getIt.get<FirebaseRepository>();
+  List<Recipe> x = await firebaseRepository.getAllRecipes();
 
   runApp(const MyApp());
 }
@@ -60,14 +66,7 @@ class MyApp extends StatelessWidget {
 Future<void> signIn() async {
   try {
     final userCredential = await FirebaseAuth.instance.signInAnonymously();
-    print("Signed in with temporary account.");
   } on FirebaseAuthException catch (e) {
-    switch (e.code) {
-      case "operation-not-allowed":
-        print("Anonymous auth hasn't been enabled for this project.");
-        break;
-      default:
-        print("Unknown error.");
-    }
+    print(e);
   }
 }
