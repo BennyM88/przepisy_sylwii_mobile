@@ -64,7 +64,6 @@ class RecipesList extends StatelessWidget {
             bottom: 25.h,
             child: Container(
               width: 240.w,
-              height: 130.h,
               padding: EdgeInsets.all(16.h),
               decoration: BoxDecoration(
                 color: CustomColors.pink,
