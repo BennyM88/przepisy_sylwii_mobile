@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
-import 'package:przepisy_sylwii_mobile/core/cubit/recipe_cubit.dart';
+import 'package:przepisy_sylwii_mobile/core/recipe_cubit/recipe_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/models/recipe.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/recipe_details_page.dart';
