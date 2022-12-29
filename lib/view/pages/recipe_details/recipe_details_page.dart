@@ -1,8 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/models/recipe.dart';
+import 'package:przepisy_sylwii_mobile/view/pages/recipe_details/recipe_details_preparation_page.dart';
+import 'package:przepisy_sylwii_mobile/view/widgets/shimmer_box.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class RecipeDetailsPage extends StatelessWidget {
@@ -15,7 +18,12 @@ class RecipeDetailsPage extends StatelessWidget {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () async => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => RecipeDetailsPreparationPage(),
+          ),
+        ),
         label: Text(
           'Zacznij gotować',
           style: CustomTypography.uRegular16n100,
@@ -39,10 +47,14 @@ class RecipeDetailsPage extends StatelessWidget {
   Widget _body(BuildContext context) {
     return Stack(
       children: [
-        Image.network(
-          recipe.url,
-          height: 380.h,
+        CachedNetworkImage(
+          imageUrl: recipe.url,
           fit: BoxFit.cover,
+          height: 380.h,
+          filterQuality: FilterQuality.high,
+          placeholder: (_, __) =>
+              const ShimmerBox(height: 380, width: double.infinity, radius: 0),
+          errorWidget: (_, __, ___) => const Icon(Icons.error),
         ),
         Positioned(
           top: 70.h,
