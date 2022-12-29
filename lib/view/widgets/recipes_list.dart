@@ -6,7 +6,7 @@ import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/core/recipe_cubit/recipe_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/models/recipe.dart';
-import 'package:przepisy_sylwii_mobile/view/pages/recipe_details_page.dart';
+import 'package:przepisy_sylwii_mobile/view/pages/recipe_details/recipe_details_page.dart';
 
 class RecipesList extends StatefulWidget {
   const RecipesList({super.key});

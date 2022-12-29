@@ -10,7 +10,7 @@ import 'package:przepisy_sylwii_mobile/core/main_provider.dart';
 import 'package:przepisy_sylwii_mobile/firebase_options.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/services/config_reader/config_reader.dart';
-import 'package:przepisy_sylwii_mobile/view/pages/home_page.dart';
+import 'package:przepisy_sylwii_mobile/view/pages/home/home_page.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/enter_exit_transition.dart';
 
 void main() async {

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
-import 'package:przepisy_sylwii_mobile/view/pages/settings_page.dart';
+import 'package:przepisy_sylwii_mobile/view/pages/settings/settings_page.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/category_list.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/recipes_list.dart';
 
