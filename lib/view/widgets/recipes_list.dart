@@ -7,6 +7,7 @@ import 'package:przepisy_sylwii_mobile/core/recipe_cubit/recipe_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/models/recipe.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/recipe_details/recipe_details_page.dart';
+import 'package:przepisy_sylwii_mobile/view/widgets/recipes_list_shimmer.dart';
 
 class RecipesList extends StatefulWidget {
   const RecipesList({super.key});
@@ -30,7 +31,7 @@ class _RecipesListState extends State<RecipesList> {
         height: 390.h,
         child: BlocBuilder<RecipeCubit, RecipeState>(
           builder: (_, state) => state.when(
-            loading: () => CircularProgressIndicator(),
+            loading: () => RecipesListShimmer(),
             loaded: (recipes) => ListView.builder(
               shrinkWrap: true,
               physics: const ClampingScrollPhysics(),
@@ -56,7 +57,7 @@ class _RecipesListState extends State<RecipesList> {
 
   Widget _buildRecipeBox(Recipe recipe) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(0, 0, 40.w, 0),
+      padding: EdgeInsets.only(right: 40.w),
       child: Stack(
         clipBehavior: Clip.none,
         children: [

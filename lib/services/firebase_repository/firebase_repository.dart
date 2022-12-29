@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 import 'package:przepisy_sylwii_mobile/constants/firestore_paths.dart';
@@ -11,6 +13,7 @@ class FirebaseRepository {
     List<Recipe> allRecipes = recipesSnapshot.docs
         .map((doc) => Recipe.fromJson(doc.data() as Map<String, dynamic>))
         .toList();
+    await Future.delayed(const Duration(seconds: 2));
     return allRecipes;
   }
 }
