@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +9,7 @@ import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/models/recipe.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/recipe_details/recipe_details_page.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/recipes_list_shimmer.dart';
+import 'package:przepisy_sylwii_mobile/view/widgets/shimmer_box.dart';
 
 class RecipesList extends StatefulWidget {
   const RecipesList({super.key});
@@ -76,9 +78,13 @@ class _RecipesListState extends State<RecipesList> {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16.r),
-              child: Image.network(
-                recipe.url,
+              child: CachedNetworkImage(
+                imageUrl: recipe.url,
                 fit: BoxFit.cover,
+                filterQuality: FilterQuality.high,
+                placeholder: (_, __) =>
+                    const ShimmerBox(height: 280, width: 280, radius: 16),
+                errorWidget: (_, __, ___) => const Icon(Icons.error),
               ),
             ),
           ),

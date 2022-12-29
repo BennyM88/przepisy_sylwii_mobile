@@ -14,15 +14,25 @@ class RecipesListShimmer extends StatelessWidget {
         children: [
           Column(
             children: const [
-              ShimmerBox(280, 280, 16),
-              ShimmerBox(240, 90, 16),
+              ShimmerBox(height: 280, width: 280, radius: 16),
+              ShimmerBox(
+                height: 85,
+                width: 240,
+                radius: 16,
+                isStack: true,
+              ),
             ],
           ),
           SizedBox(width: 40.w),
           Column(
             children: const [
-              ShimmerBox(280, 280, 16),
-              ShimmerBox(240, 90, 16),
+              ShimmerBox(height: 280, width: 280, radius: 16),
+              ShimmerBox(
+                height: 85,
+                width: 240,
+                radius: 16,
+                isStack: true,
+              ),
             ],
           ),
         ],
