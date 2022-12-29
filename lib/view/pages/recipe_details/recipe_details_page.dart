@@ -21,7 +21,7 @@ class RecipeDetailsPage extends StatelessWidget {
         onPressed: () async => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => RecipeDetailsPreparationPage(),
+            builder: (context) => RecipeDetailsPreparationPage(recipe: recipe),
           ),
         ),
         label: Text(
@@ -76,7 +76,7 @@ class RecipeDetailsPage extends StatelessWidget {
             child: Icon(
               Icons.favorite,
               color: CustomColors.neutral100,
-              size: 26.sp,
+              size: 28.sp,
             ),
           ),
         ),
@@ -92,14 +92,14 @@ class RecipeDetailsPage extends StatelessWidget {
         children: [
           Text(
             recipe.dishName,
-            style: CustomTypography.uBold22,
+            style: CustomTypography.uBold28,
           ),
           SizedBox(height: 6.h),
           Row(
             children: [
               Text(
                 '${recipe.time} min',
-                style: CustomTypography.uRegular12n40,
+                style: CustomTypography.uRegular14n40,
               ),
               SizedBox(width: 6.h),
               Container(
@@ -110,10 +110,31 @@ class RecipeDetailsPage extends StatelessWidget {
               SizedBox(width: 6.h),
               Text(
                 _getAmount(recipe.amount),
-                style: CustomTypography.uRegular12n40,
+                style: CustomTypography.uRegular14n40,
               ),
             ],
           ),
+          SizedBox(height: 6.h),
+          const Divider(thickness: 1),
+          SizedBox(height: 6.h),
+          Text(
+            'Składniki',
+            style: CustomTypography.uRegular22,
+          ),
+          // ListView.builder(
+          //   shrinkWrap: true,
+          //   physics: const ClampingScrollPhysics(),
+          //   itemCount: recipe.ingredients.length,
+          //   itemBuilder: (_, index) {
+          //     return Padding(
+          //       padding: EdgeInsets.symmetric(vertical: 4.h),
+          //       child: Text(
+          //         '⚫ ${recipe.ingredients[index]}',
+          //         style: CustomTypography.uRegular16,
+          //       ),
+          //     );
+          //   },
+          // ),
         ],
       ),
     );

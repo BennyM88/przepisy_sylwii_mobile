@@ -32,6 +32,20 @@ class CustomTypography {
     color: CustomColors.neutral00,
   );
 
+  static TextStyle uBold28 = TextStyle(
+    fontSize: 28.sp,
+    fontWeight: bold,
+    fontFamily: ubuntuFontBold,
+    color: CustomColors.neutral00,
+  );
+
+  static TextStyle uBold48 = TextStyle(
+    fontSize: 48.sp,
+    fontWeight: bold,
+    fontFamily: ubuntuFontBold,
+    color: CustomColors.neutral00,
+  );
+
   static TextStyle uBold18 = TextStyle(
     fontSize: 18.sp,
     fontWeight: bold,
@@ -60,15 +74,22 @@ class CustomTypography {
     color: CustomColors.neutral00,
   );
 
-  static TextStyle uRegular14n40 = TextStyle(
+  static TextStyle uRegular16 = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: regular,
+    fontFamily: ubuntuFontRegular,
+    color: CustomColors.neutral00,
+  );
+
+  static TextStyle uRegular14n40w = TextStyle(
     fontSize: 14.sp,
     fontWeight: regular,
     fontFamily: ubuntuFontRegular,
     color: CustomColors.neutral40.withOpacity(0.5),
   );
 
-  static TextStyle uRegular12n40 = TextStyle(
-    fontSize: 12.sp,
+  static TextStyle uRegular14n40 = TextStyle(
+    fontSize: 14.sp,
     fontWeight: regular,
     fontFamily: ubuntuFontRegular,
     color: CustomColors.neutral40,

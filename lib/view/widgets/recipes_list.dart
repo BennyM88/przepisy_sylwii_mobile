@@ -116,7 +116,7 @@ class _RecipesListState extends State<RecipesList> {
                   SizedBox(height: 8.h),
                   Text(
                     '"${recipe.desc}"',
-                    style: CustomTypography.uRegular14n40,
+                    style: CustomTypography.uRegular14n40w,
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 12.h),
