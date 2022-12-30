@@ -29,7 +29,7 @@ class _RecipeDetailsPreparationPageState
           padding: EdgeInsets.symmetric(horizontal: 24.w),
           child: Column(
             children: [
-              SizedBox(height: 18.h),
+              SizedBox(height: 28.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
