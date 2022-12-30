@@ -11,9 +11,16 @@ class CustomButton extends StatelessWidget {
 
   // Special variant:
   factory CustomButton.loader() {
-    return const CustomButton(
+    return CustomButton(
       content: '',
-      suffix: CircularProgressIndicator(),
+      suffix: SizedBox(
+        height: 18.sp,
+        width: 18.sp,
+        child: CircularProgressIndicator(
+          color: CustomColors.neutral100,
+          strokeWidth: 3.w,
+        ),
+      ),
       onPressed: null,
     );
   }

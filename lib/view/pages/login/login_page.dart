@@ -22,32 +22,59 @@ class _LoginPageState extends State<LoginPage> {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
-          child: Column(
-            children: [
-              SizedBox(height: 100.h),
-              Container(
-                height: 100.h,
-                width: double.infinity,
-                color: Colors.red,
-              ),
-              SizedBox(height: 48.h),
-              _googleButton(onTap: () {}),
-              SizedBox(height: 24.h),
-              _divider(),
-              SizedBox(height: 24.h),
-              CustomTextField(
-                textEditingController: emailController,
-                hintText: 'Email',
-              ),
-              SizedBox(height: 16.h),
-              CustomTextField(
-                textEditingController: passwordController,
-                hintText: 'Hasło',
-                isPassword: true,
-              ),
-              SizedBox(height: 24.h),
-              CustomButton(content: 'Zaloguj', onPressed: () {}),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: 120.h),
+                Container(
+                  height: 200.h,
+                  width: double.infinity,
+                  color: Colors.red,
+                ),
+                SizedBox(height: 48.h),
+                _googleButton(onTap: () {}),
+                SizedBox(height: 24.h),
+                _divider(),
+                SizedBox(height: 24.h),
+                CustomTextField(
+                  textEditingController: emailController,
+                  hintText: 'Email',
+                ),
+                SizedBox(height: 16.h),
+                CustomTextField(
+                  textEditingController: passwordController,
+                  hintText: 'Hasło',
+                  isPassword: true,
+                ),
+                SizedBox(height: 24.h),
+                CustomButton(content: 'Zaloguj', onPressed: () {}),
+                SizedBox(height: 24.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () {},
+                      child: Text(
+                        'Nie masz konta? ',
+                        style: CustomTypography.uRegular14,
+                      ),
+                    ),
+                    Text(
+                      'Zarejestruj się!',
+                      style: CustomTypography.uBold14,
+                    )
+                  ],
+                ),
+                SizedBox(height: 16.h),
+                GestureDetector(
+                  onTap: () {},
+                  child: Text(
+                    'Zapomniałeś hasła?',
+                    style: CustomTypography.uBold14,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
