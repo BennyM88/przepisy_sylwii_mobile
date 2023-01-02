@@ -26,4 +26,18 @@ class RecipeCubit extends Cubit<RecipeState> {
       );
     }
   }
+
+  // void loadCategoryRecipes(List<String> categoryName) {
+  //   _Loaded recipeState = state as _Loaded;
+  //   List<Recipe> recipesWithCategory = [];
+
+  //   for (int i = 0; i < recipeState.allRecipes.length; i++) {
+  //     if (categoryName.contains(recipeState.allRecipes[i].category)) {
+  //       recipesWithCategory.add(recipeState.allRecipes[i]);
+  //     }
+  //   }
+  //   print('cos ' + recipesWithCategory.toString());
+  //   final newState = recipeState.copyWith(allRecipes: recipesWithCategory);
+  //   emit(newState);
+  // }
 }

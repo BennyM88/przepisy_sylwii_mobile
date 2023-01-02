@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:przepisy_sylwii_mobile/core/category_cubit/category_cubit.dart';
 import 'package:przepisy_sylwii_mobile/core/recipe_cubit/recipe_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
 
@@ -13,6 +14,7 @@ class MainProvider extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => getIt<RecipeCubit>()),
+        BlocProvider(create: (_) => getIt<CategoryCubit>()),
       ],
       child: child,
     );
