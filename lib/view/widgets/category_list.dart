@@ -5,7 +5,6 @@ import 'package:przepisy_sylwii_mobile/constants/category_list.dart';
 import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/core/category_cubit/category_cubit.dart';
-import 'package:przepisy_sylwii_mobile/core/recipe_cubit/recipe_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
 
 class CategoryList extends StatefulWidget {
@@ -32,7 +31,7 @@ class _CategoryListState extends State<CategoryList> {
               scrollDirection: Axis.horizontal,
               itemCount: categoryList.length,
               itemBuilder: (_, index) => GestureDetector(
-                onTap: () {
+                onTap: () async {
                   String selectedCategory = categoryList[index];
                   if (_category.contains(categoryList[index])) {
                     _category

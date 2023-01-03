@@ -13,6 +13,7 @@ class FirebaseRepository {
     List<Recipe> allRecipes = recipesSnapshot.docs
         .map((doc) => Recipe.fromJson(doc.data() as Map<String, dynamic>))
         .toList();
+
     return allRecipes;
   }
 }

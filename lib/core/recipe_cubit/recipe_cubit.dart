@@ -11,33 +11,36 @@ part 'recipe_state.dart';
 class RecipeCubit extends Cubit<RecipeState> {
   final FirebaseRepository _firebaseRepository;
 
-  RecipeCubit(this._firebaseRepository) : super(const RecipeState.loading());
+  RecipeCubit(this._firebaseRepository) : super(const RecipeState.initial());
 
-  Future<void> loadRecipes() async {
+  Future<void> loadRecipes(List<String> categoryName) async {
     try {
       List<Recipe> allRecipes = await _firebaseRepository.getAllRecipes();
 
-      emit(
-        RecipeState.loaded(allRecipes: allRecipes),
-      );
+      if (categoryName.isEmpty) {
+        emit(
+          RecipeState.loaded(allRecipes: allRecipes),
+        );
+      } else {
+        _Loaded recipeState = state as _Loaded;
+        List<Recipe> recipesWithCategory = [];
+
+        emit(const RecipeState.loading());
+
+        for (int i = 0; i < allRecipes.length; i++) {
+          if (categoryName.contains(allRecipes[i].category)) {
+            recipesWithCategory.add(allRecipes[i]);
+          }
+        }
+
+        _$_Loaded newRecipeState =
+            recipeState.copyWith(allRecipes: recipesWithCategory);
+        emit(newRecipeState);
+      }
     } on Exception catch (e) {
       emit(
         RecipeState.error(errorMessage: e.toString()),
       );
     }
   }
-
-  // void loadCategoryRecipes(List<String> categoryName) {
-  //   _Loaded recipeState = state as _Loaded;
-  //   List<Recipe> recipesWithCategory = [];
-
-  //   for (int i = 0; i < recipeState.allRecipes.length; i++) {
-  //     if (categoryName.contains(recipeState.allRecipes[i].category)) {
-  //       recipesWithCategory.add(recipeState.allRecipes[i]);
-  //     }
-  //   }
-  //   print('cos ' + recipesWithCategory.toString());
-  //   final newState = recipeState.copyWith(allRecipes: recipesWithCategory);
-  //   emit(newState);
-  // }
 }

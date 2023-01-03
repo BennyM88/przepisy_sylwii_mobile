@@ -33,7 +33,8 @@ class _RecipesListState extends State<RecipesList> {
         height: 390.h,
         child: BlocBuilder<RecipeCubit, RecipeState>(
           builder: (_, state) => state.when(
-            loading: () => RecipesListShimmer(),
+            initial: () => const RecipesListShimmer(),
+            loading: () => const RecipesListShimmer(),
             loaded: (recipes) => ListView.builder(
               shrinkWrap: true,
               physics: const ClampingScrollPhysics(),
@@ -135,5 +136,5 @@ class _RecipesListState extends State<RecipesList> {
 }
 
 Future<void> initCubit() async {
-  await getIt<RecipeCubit>().loadRecipes();
+  await getIt<RecipeCubit>().loadRecipes([]);
 }

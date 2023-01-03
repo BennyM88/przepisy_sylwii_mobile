@@ -93,7 +93,10 @@ class _RecipeDetailsPreparationPageState
             width: double.infinity,
             filterQuality: FilterQuality.high,
             placeholder: (_, __) => const ShimmerBox(
-                height: 380, width: double.infinity, radius: 0),
+              height: 380,
+              width: double.infinity,
+              radius: 0,
+            ),
             errorWidget: (_, __, ___) => const Icon(Icons.error),
           ),
         ),
