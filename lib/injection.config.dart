@@ -29,8 +29,7 @@ extension GetItInjectableX on _i1.GetIt {
     );
     gh.factory<_i3.FirebaseRepository>(() => _i3.FirebaseRepository());
     gh.singleton<_i4.RecipeCubit>(
-      _i4.RecipeCubit(gh<_i3.FirebaseRepository>()),
-    );
+        _i4.RecipeCubit(gh<_i3.FirebaseRepository>()));
     gh.singleton<_i5.CategoryCubit>(_i5.CategoryCubit(gh<_i4.RecipeCubit>()));
     return this;
   }
