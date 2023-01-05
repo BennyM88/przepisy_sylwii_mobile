@@ -30,7 +30,7 @@ extension GetItInjectableX on _i1.GetIt {
       environmentFilter,
     );
     gh.factory<_i3.FirebaseRepository>(() => _i3.FirebaseRepository());
-    gh.singleton<_i4.LoginCubit>(_i4.LoginCubit());
+    gh.singleton<_i4.LoginCubit>(_i4.LoginCubit(gh<_i3.FirebaseRepository>()));
     gh.singleton<_i5.RecipeCubit>(
         _i5.RecipeCubit(gh<_i3.FirebaseRepository>()));
     gh.singleton<_i6.CategoryCubit>(_i6.CategoryCubit(gh<_i5.RecipeCubit>()));
