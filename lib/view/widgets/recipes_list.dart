@@ -32,9 +32,7 @@ class _RecipesListState extends State<RecipesList> {
       child: SizedBox(
         height: 390.h,
         child: BlocBuilder<RecipeCubit, RecipeState>(
-          builder: (_, state) => state.when(
-            initial: () => const RecipesListShimmer(),
-            loading: () => const RecipesListShimmer(),
+          builder: (_, state) => state.maybeWhen(
             loaded: (recipes) => ListView.builder(
               shrinkWrap: true,
               physics: const ClampingScrollPhysics(),
@@ -52,6 +50,7 @@ class _RecipesListState extends State<RecipesList> {
               ),
             ),
             error: (errorMessage) => Text(errorMessage!),
+            orElse: () => const RecipesListShimmer(),
           ),
         ),
       ),

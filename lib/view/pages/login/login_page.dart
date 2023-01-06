@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
+import 'package:przepisy_sylwii_mobile/core/login_cubit/login_cubit.dart';
+import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/custom_button.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/custom_text_field.dart';
 
@@ -25,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: 120.h),
+                SizedBox(height: 60.h),
                 Container(
                   height: 200.h,
                   width: double.infinity,
@@ -47,17 +50,42 @@ class _LoginPageState extends State<LoginPage> {
                   isPassword: true,
                 ),
                 SizedBox(height: 24.h),
-                CustomButton(content: 'Zaloguj', onPressed: () {}),
+                BlocConsumer<LoginCubit, LoginState>(
+                  listener: (_, state) => state.whenOrNull(
+                    success: () => print('dodac user auth'),
+                  ),
+                  builder: (_, state) {
+                    return Column(
+                      children: [
+                        state.maybeWhen(
+                          error: (e) => Text(
+                            e.toString(),
+                            style: CustomTypography.uRegular12red,
+                          ),
+                          orElse: () => const SizedBox(),
+                        ),
+                        SizedBox(height: 12.h),
+                        state.maybeWhen(
+                          loading: () => CustomButton.loader(),
+                          orElse: () => CustomButton(
+                            content: 'Zaloguj',
+                            onPressed: () async => getIt<LoginCubit>().login(
+                              emailController.text.trim(),
+                              passwordController.text.trim(),
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                ),
                 SizedBox(height: 24.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: Text(
-                        'Nie masz konta? ',
-                        style: CustomTypography.uRegular14,
-                      ),
+                    Text(
+                      'Nie masz konta? ',
+                      style: CustomTypography.uRegular14,
                     ),
                     Text(
                       'Zarejestruj się!',

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -23,8 +24,8 @@ class LoginCubit extends Cubit<LoginState> {
       );
 
       emit(const LoginState.success());
-    } on Exception catch (e) {
-      emit(LoginState.error(errorMessage: e.toString()));
+    } on FirebaseAuthException catch (e) {
+      emit(LoginState.error(errorMessage: e.message));
     }
   }
 }

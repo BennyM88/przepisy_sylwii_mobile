@@ -115,4 +115,11 @@ class CustomTypography {
     fontFamily: ubuntuFontRegular,
     color: CustomColors.neutral70,
   );
+
+  static TextStyle uRegular12red = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: regular,
+    fontFamily: ubuntuFontRegular,
+    color: CustomColors.red,
+  );
 }
