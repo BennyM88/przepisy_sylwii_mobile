@@ -52,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 24.h),
                 BlocConsumer<LoginCubit, LoginState>(
                   listener: (_, state) => state.whenOrNull(
-                    success: () => print('dodac user auth'),
+                    success: () => print('zalogowany'),
                   ),
                   builder: (_, state) {
                     return Column(

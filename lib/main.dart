@@ -1,5 +1,4 @@
 import 'package:cupertino_back_gesture/cupertino_back_gesture.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,11 +6,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/core/main_provider.dart';
+import 'package:przepisy_sylwii_mobile/core/state_wrapper.dart';
 import 'package:przepisy_sylwii_mobile/firebase_options.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/services/config_reader/config_reader.dart';
-import 'package:przepisy_sylwii_mobile/view/pages/home/home_page.dart';
-import 'package:przepisy_sylwii_mobile/view/pages/login/login_page.dart';
+import 'package:przepisy_sylwii_mobile/services/firebase_repository/firebase_repository.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/enter_exit_transition.dart';
 
 void main() async {
@@ -26,7 +25,8 @@ void main() async {
     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
   );
   configureDependencies();
-  await signIn();
+
+  // getIt<FirebaseRepository>().signOut();
 
   runApp(const MyApp());
 }
@@ -54,19 +54,10 @@ class MyApp extends StatelessWidget {
                 },
               ),
             ),
-            home: HomePage(),
+            home: const StateWrapper(),
           ),
         );
       },
     );
-  }
-}
-
-//TODO tmp signIn
-Future<void> signIn() async {
-  try {
-    final userCredential = await FirebaseAuth.instance.signInAnonymously();
-  } on FirebaseAuthException catch (e) {
-    print(e);
   }
 }

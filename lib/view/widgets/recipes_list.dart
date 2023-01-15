@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/core/recipe_cubit/recipe_cubit.dart';
-import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/models/recipe.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/recipe_details/recipe_details_page.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/recipes_list_shimmer.dart';
@@ -22,7 +21,6 @@ class _RecipesListState extends State<RecipesList> {
   @override
   void initState() {
     super.initState();
-    initCubit();
   }
 
   @override
@@ -32,26 +30,28 @@ class _RecipesListState extends State<RecipesList> {
       child: SizedBox(
         height: 390.h,
         child: BlocBuilder<RecipeCubit, RecipeState>(
-          builder: (_, state) => state.maybeWhen(
-            loaded: (recipes) => ListView.builder(
-              shrinkWrap: true,
-              physics: const ClampingScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              itemCount: recipes.length,
-              itemBuilder: (context, index) => GestureDetector(
-                onTap: () async => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        RecipeDetailsPage(recipe: recipes[index]),
+          builder: (_, state) {
+            return state.maybeWhen(
+              loaded: (recipes) => ListView.builder(
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemCount: recipes.length,
+                itemBuilder: (context, index) => GestureDetector(
+                  onTap: () async => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          RecipeDetailsPage(recipe: recipes[index]),
+                    ),
                   ),
+                  child: _buildRecipeBox(recipes[index]),
                 ),
-                child: _buildRecipeBox(recipes[index]),
               ),
-            ),
-            error: (errorMessage) => Text(errorMessage!),
-            orElse: () => const RecipesListShimmer(),
-          ),
+              error: (errorMessage) => Text(errorMessage!),
+              orElse: () => const RecipesListShimmer(),
+            );
+          },
         ),
       ),
     );
@@ -132,8 +132,4 @@ class _RecipesListState extends State<RecipesList> {
       ),
     );
   }
-}
-
-Future<void> initCubit() async {
-  await getIt<RecipeCubit>().loadRecipes([]);
 }
