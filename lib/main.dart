@@ -10,7 +10,6 @@ import 'package:przepisy_sylwii_mobile/core/state_wrapper.dart';
 import 'package:przepisy_sylwii_mobile/firebase_options.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/services/config_reader/config_reader.dart';
-import 'package:przepisy_sylwii_mobile/services/firebase_repository/firebase_repository.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/enter_exit_transition.dart';
 
 void main() async {
