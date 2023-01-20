@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "988516302218-5krs6kp7i9n37uq2fjd24hjm9kstdm5r.apps.googleusercontent.com",
+          "client_id": "988516302218-1g9i9eqhittujb9v90mascqph6cu2ivt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.przepisy_sylwii_mobile",
+            "certificate_hash": "15e726c6e71dc1360df9aec68c8578411c6f2ef2"
+          }
+        },
+        {
+          "client_id": "988516302218-pu28293va5m3vuo2l622hcfn0ontnc96.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -29,6 +37,13 @@
             {
               "client_id": "988516302218-5krs6kp7i9n37uq2fjd24hjm9kstdm5r.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "988516302218-0teg4mm0cpa6fvqgak5qv19ovu6sskrh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.przepisySylwiiMobile"
+              }
             }
           ]
         }

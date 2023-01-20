@@ -4,7 +4,7 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-// ignore_for_file: no_leading_underscores_for_library_prefixes, require_trailing_commas
+// ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:przepisy_sylwii_mobile/core/category_cubit/category_cubit.dart'

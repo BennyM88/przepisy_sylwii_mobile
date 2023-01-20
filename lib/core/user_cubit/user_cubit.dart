@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:przepisy_sylwii_mobile/models/user_profile.dart';
 import 'package:przepisy_sylwii_mobile/services/firebase_auth_repository/firebase_auth_repository.dart';
@@ -45,6 +46,11 @@ class UserCubit extends Cubit<UserState> {
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  Future<void> logout() async {
+    await _firebaseAuthRepository.signOut();
+    await GoogleSignIn().signOut();
   }
 
   @override

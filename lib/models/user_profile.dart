@@ -7,5 +7,7 @@ class UserProfile with _$UserProfile {
   const factory UserProfile({
     required String email,
     @Default('') String accountCreated,
+    @Default('') String firstName,
+    @Default('') String uid,
   }) = _UserProfile;
 }

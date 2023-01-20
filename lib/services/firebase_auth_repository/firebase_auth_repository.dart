@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:przepisy_sylwii_mobile/constants/firestore_paths.dart';
@@ -21,6 +22,33 @@ class FirebaseAuthRepository {
   }) async =>
       await _auth.signInWithEmailAndPassword(email: email, password: password);
 
+  Future<User?> signInWithGoogle() async {
+    GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+    if (googleAuth?.accessToken == null) {
+      return null;
+    }
+
+    AuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    await _auth.signInWithCredential(credential);
+
+    User? user = _auth.currentUser;
+    if (user == null) throw Exception();
+
+    await CustomFirestorePaths.usersPath.doc(user.email).set({
+      'email': user.email,
+      'creationTime': user.metadata.creationTime.toString(),
+      'firstName': user.displayName ?? user.email,
+      'uid': user.uid,
+    });
+
+    return _auth.currentUser;
+  }
+
   Future<void> createUserWithEmailAndPassword({
     required String email,
     required String password,
@@ -33,6 +61,8 @@ class FirebaseAuthRepository {
     await CustomFirestorePaths.usersPath.doc(result.user?.email).set({
       'email': email,
       'creationTime': result.user?.metadata.creationTime.toString(),
+      'firstName': 'hello',
+      'uid': result.user?.uid,
     });
   }
 
@@ -45,6 +75,8 @@ class FirebaseAuthRepository {
     return UserProfile(
       email: data['email'],
       accountCreated: data['creationTime'],
+      firstName: data['firstName'],
+      uid: data['uid'],
     );
   }
 }

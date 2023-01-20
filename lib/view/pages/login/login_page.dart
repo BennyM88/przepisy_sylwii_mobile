@@ -35,7 +35,9 @@ class _LoginPageState extends State<LoginPage> {
                   color: Colors.red,
                 ),
                 SizedBox(height: 48.h),
-                _googleButton(onTap: () {}),
+                _googleButton(
+                  onTap: () async => getIt<LoginCubit>().signInWithGoogle(),
+                ),
                 SizedBox(height: 24.h),
                 _divider(),
                 SizedBox(height: 24.h),

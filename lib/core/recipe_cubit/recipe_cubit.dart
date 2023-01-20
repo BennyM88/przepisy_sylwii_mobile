@@ -13,6 +13,7 @@ class RecipeCubit extends Cubit<RecipeState> {
 
   RecipeCubit(this._firebaseRepository) : super(const RecipeState.initial());
 
+  //TODO refactor this method with better states
   Future<void> loadRecipes(List<String> categoryName) async {
     try {
       List<Recipe> allRecipes = await _firebaseRepository.getAllRecipes();

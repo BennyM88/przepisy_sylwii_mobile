@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$UserProfile {
   String get email => throw _privateConstructorUsedError;
   String get accountCreated => throw _privateConstructorUsedError;
+  String get firstName => throw _privateConstructorUsedError;
+  String get uid => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserProfileCopyWith<UserProfile> get copyWith =>
@@ -30,7 +32,8 @@ abstract class $UserProfileCopyWith<$Res> {
           UserProfile value, $Res Function(UserProfile) then) =
       _$UserProfileCopyWithImpl<$Res, UserProfile>;
   @useResult
-  $Res call({String email, String accountCreated});
+  $Res call(
+      {String email, String accountCreated, String firstName, String uid});
 }
 
 /// @nodoc
@@ -48,6 +51,8 @@ class _$UserProfileCopyWithImpl<$Res, $Val extends UserProfile>
   $Res call({
     Object? email = null,
     Object? accountCreated = null,
+    Object? firstName = null,
+    Object? uid = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -57,6 +62,14 @@ class _$UserProfileCopyWithImpl<$Res, $Val extends UserProfile>
       accountCreated: null == accountCreated
           ? _value.accountCreated
           : accountCreated // ignore: cast_nullable_to_non_nullable
+              as String,
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -70,7 +83,8 @@ abstract class _$$_UserProfileCopyWith<$Res>
       __$$_UserProfileCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String accountCreated});
+  $Res call(
+      {String email, String accountCreated, String firstName, String uid});
 }
 
 /// @nodoc
@@ -86,6 +100,8 @@ class __$$_UserProfileCopyWithImpl<$Res>
   $Res call({
     Object? email = null,
     Object? accountCreated = null,
+    Object? firstName = null,
+    Object? uid = null,
   }) {
     return _then(_$_UserProfile(
       email: null == email
@@ -96,6 +112,14 @@ class __$$_UserProfileCopyWithImpl<$Res>
           ? _value.accountCreated
           : accountCreated // ignore: cast_nullable_to_non_nullable
               as String,
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -103,17 +127,27 @@ class __$$_UserProfileCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_UserProfile implements _UserProfile {
-  const _$_UserProfile({required this.email, this.accountCreated = ''});
+  const _$_UserProfile(
+      {required this.email,
+      this.accountCreated = '',
+      this.firstName = '',
+      this.uid = ''});
 
   @override
   final String email;
   @override
   @JsonKey()
   final String accountCreated;
+  @override
+  @JsonKey()
+  final String firstName;
+  @override
+  @JsonKey()
+  final String uid;
 
   @override
   String toString() {
-    return 'UserProfile(email: $email, accountCreated: $accountCreated)';
+    return 'UserProfile(email: $email, accountCreated: $accountCreated, firstName: $firstName, uid: $uid)';
   }
 
   @override
@@ -123,11 +157,15 @@ class _$_UserProfile implements _UserProfile {
             other is _$_UserProfile &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.accountCreated, accountCreated) ||
-                other.accountCreated == accountCreated));
+                other.accountCreated == accountCreated) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.uid, uid) || other.uid == uid));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, accountCreated);
+  int get hashCode =>
+      Object.hash(runtimeType, email, accountCreated, firstName, uid);
 
   @JsonKey(ignore: true)
   @override
@@ -139,12 +177,18 @@ class _$_UserProfile implements _UserProfile {
 abstract class _UserProfile implements UserProfile {
   const factory _UserProfile(
       {required final String email,
-      final String accountCreated}) = _$_UserProfile;
+      final String accountCreated,
+      final String firstName,
+      final String uid}) = _$_UserProfile;
 
   @override
   String get email;
   @override
   String get accountCreated;
+  @override
+  String get firstName;
+  @override
+  String get uid;
   @override
   @JsonKey(ignore: true)
   _$$_UserProfileCopyWith<_$_UserProfile> get copyWith =>
