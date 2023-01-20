@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
+import 'package:przepisy_sylwii_mobile/core/user_cubit/user_cubit.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/settings/settings_page.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/category_list.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/recipes_list.dart';
@@ -49,9 +51,15 @@ class HomePage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Gal Anonim',
-                style: CustomTypography.uBold22,
+              BlocBuilder<UserCubit, UserState>(
+                builder: (_, state) {
+                  return Text(
+                    state is UserAuthenticated
+                        ? state.userProfile?.firstName ?? ''
+                        : 'Unknown',
+                    style: CustomTypography.uBold22,
+                  );
+                },
               ),
               const Spacer(),
               InkWell(

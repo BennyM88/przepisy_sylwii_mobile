@@ -28,7 +28,7 @@ class UserCubit extends Cubit<UserState> {
         emit(UserUnauthenticated());
       } else {
         fillUserWithData();
-        emit(UserAuthenticated(user));
+        emit(UserAuthenticated(user: user));
       }
     });
   }
@@ -39,7 +39,7 @@ class UserCubit extends Cubit<UserState> {
       if (currentUser != null) {
         UserProfile userProfile =
             await _firebaseAuthRepository.getUserDetails();
-        emit(UserFilledWithData(userProfile));
+        emit(UserAuthenticated(userProfile: userProfile));
       } else {
         emit(UserUnauthenticated());
       }

@@ -7,6 +7,7 @@ class CustomTextField extends StatefulWidget {
   final TextEditingController textEditingController;
   final String hintText;
   final bool isPassword;
+  final bool isEnabled;
   final int? fieldMaxLength;
 
   const CustomTextField({
@@ -14,6 +15,7 @@ class CustomTextField extends StatefulWidget {
     required this.textEditingController,
     required this.hintText,
     this.isPassword = false,
+    this.isEnabled = true,
     this.fieldMaxLength,
   }) : super(key: key);
 
@@ -25,7 +27,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      enabled: true,
+      enabled: widget.isEnabled,
       style: CustomTypography.uRegular14,
       controller: widget.textEditingController,
       maxLength: widget.fieldMaxLength,
@@ -37,6 +39,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16.r),
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16.r),
+          borderSide: const BorderSide(color: CustomColors.neutral90),
         ),
         labelText: widget.hintText,
         labelStyle: CustomTypography.uRegular14,

@@ -41,24 +41,36 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 24.h),
                 _divider(),
                 SizedBox(height: 24.h),
-                CustomTextField(
-                  textEditingController: emailController,
-                  hintText: 'Email',
-                ),
-                SizedBox(height: 16.h),
-                CustomTextField(
-                  textEditingController: passwordController,
-                  hintText: 'Hasło',
-                  isPassword: true,
-                ),
-                SizedBox(height: 24.h),
-                BlocConsumer<LoginCubit, LoginState>(
-                  listener: (_, state) => state.whenOrNull(
-                    success: () => print('zalogowany'),
-                  ),
+                BlocBuilder<LoginCubit, LoginState>(
                   builder: (_, state) {
                     return Column(
                       children: [
+                        state.maybeWhen(
+                          loading: () => CustomTextField(
+                            textEditingController: emailController,
+                            hintText: 'Email',
+                            isEnabled: false,
+                          ),
+                          orElse: () => CustomTextField(
+                            textEditingController: emailController,
+                            hintText: 'Email',
+                          ),
+                        ),
+                        SizedBox(height: 16.h),
+                        state.maybeWhen(
+                          loading: () => CustomTextField(
+                            textEditingController: passwordController,
+                            hintText: 'Hasło',
+                            isPassword: true,
+                            isEnabled: false,
+                          ),
+                          orElse: () => CustomTextField(
+                            textEditingController: passwordController,
+                            hintText: 'Hasło',
+                            isPassword: true,
+                          ),
+                        ),
+                        SizedBox(height: 24.h),
                         state.maybeWhen(
                           error: (e) => Text(
                             e.toString(),

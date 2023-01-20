@@ -30,9 +30,7 @@ class _StateWrapperState extends State<StateWrapper> {
         getIt<RecipeCubit>().loadRecipes([]);
       },
       builder: (_, state) {
-        if (state is UserAuthenticated || state is UserFilledWithData) {
-          return const HomePage();
-        }
+        if (state is UserAuthenticated) return const HomePage();
         if (state is UserUnauthenticated) return const LoginPage();
         return const TestPage();
       },

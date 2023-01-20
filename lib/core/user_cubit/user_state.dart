@@ -5,13 +5,8 @@ abstract class UserState {}
 class UserUnauthenticated extends UserState {}
 
 class UserAuthenticated extends UserState {
-  final User user;
+  final User? user;
+  final UserProfile? userProfile;
 
-  UserAuthenticated(this.user);
-}
-
-class UserFilledWithData extends UserState {
-  final UserProfile userProfile;
-
-  UserFilledWithData(this.userProfile);
+  UserAuthenticated({this.user, this.userProfile});
 }
