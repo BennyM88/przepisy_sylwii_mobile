@@ -6,6 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:przepisy_sylwii_mobile/models/user_profile.dart';
 import 'package:przepisy_sylwii_mobile/services/firebase_auth_repository/firebase_auth_repository.dart';
+import 'package:przepisy_sylwii_mobile/services/firebase_crashlytics/firebase_crashlytics.dart';
 
 part 'user_state.dart';
 
@@ -43,8 +44,8 @@ class UserCubit extends Cubit<UserState> {
       } else {
         emit(UserUnauthenticated());
       }
-    } catch (e) {
-      print(e.toString());
+    } on Exception catch (e, st) {
+      FirebaseCrashlyticsService.recordError(e, st);
     }
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:przepisy_sylwii_mobile/models/recipe.dart';
+import 'package:przepisy_sylwii_mobile/services/firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:przepisy_sylwii_mobile/services/firebase_repository/firebase_repository.dart';
 
 part 'recipe_cubit.freezed.dart';
@@ -38,7 +39,8 @@ class RecipeCubit extends Cubit<RecipeState> {
             recipeState.copyWith(allRecipes: recipesWithCategory);
         emit(newRecipeState);
       }
-    } on Exception catch (e) {
+    } on Exception catch (e, st) {
+      FirebaseCrashlyticsService.recordError(e, st);
       emit(
         RecipeState.error(errorMessage: e.toString()),
       );
