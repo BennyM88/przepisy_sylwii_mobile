@@ -24,7 +24,7 @@ class _StateWrapperState extends State<StateWrapper> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<UserCubit, UserState>(
-      listenWhen: (_, current) => current is UserAuthenticated,
+      listenWhen: (previous, _) => previous is! UserAuthenticated,
       listener: (_, __) async {
         getIt<UserCubit>().fillUserWithData();
         getIt<RecipeCubit>().loadRecipes([]);

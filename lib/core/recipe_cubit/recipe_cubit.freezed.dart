@@ -16,55 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RecipeState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<Recipe> allRecipes) loaded,
-    required TResult Function(String? errorMessage) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<Recipe> allRecipes)? loaded,
-    TResult? Function(String? errorMessage)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<Recipe> allRecipes)? loaded,
-    TResult Function(String? errorMessage)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Error value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Error value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) =>
+  List<Recipe> get allRecipes => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $RecipeStateCopyWith<RecipeState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -73,6 +30,8 @@ abstract class $RecipeStateCopyWith<$Res> {
   factory $RecipeStateCopyWith(
           RecipeState value, $Res Function(RecipeState) then) =
       _$RecipeStateCopyWithImpl<$Res, RecipeState>;
+  @useResult
+  $Res call({List<Recipe> allRecipes, bool isLoading, String? errorMessage});
 }
 
 /// @nodoc
@@ -84,406 +43,66 @@ class _$RecipeStateCopyWithImpl<$Res, $Val extends RecipeState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? allRecipes = null,
+    Object? isLoading = null,
+    Object? errorMessage = freezed,
+  }) {
+    return _then(_value.copyWith(
+      allRecipes: null == allRecipes
+          ? _value.allRecipes
+          : allRecipes // ignore: cast_nullable_to_non_nullable
+              as List<Recipe>,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$RecipeStateCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_Initial implements _Initial {
-  const _$_Initial();
-
+abstract class _$$_RecipeStateCopyWith<$Res>
+    implements $RecipeStateCopyWith<$Res> {
+  factory _$$_RecipeStateCopyWith(
+          _$_RecipeState value, $Res Function(_$_RecipeState) then) =
+      __$$_RecipeStateCopyWithImpl<$Res>;
   @override
-  String toString() {
-    return 'RecipeState.initial()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<Recipe> allRecipes) loaded,
-    required TResult Function(String? errorMessage) error,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<Recipe> allRecipes)? loaded,
-    TResult? Function(String? errorMessage)? error,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<Recipe> allRecipes)? loaded,
-    TResult Function(String? errorMessage)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Error value) error,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Error value)? error,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements RecipeState {
-  const factory _Initial() = _$_Initial;
-}
-
-/// @nodoc
-abstract class _$$_LoadingCopyWith<$Res> {
-  factory _$$_LoadingCopyWith(
-          _$_Loading value, $Res Function(_$_Loading) then) =
-      __$$_LoadingCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_LoadingCopyWithImpl<$Res>
-    extends _$RecipeStateCopyWithImpl<$Res, _$_Loading>
-    implements _$$_LoadingCopyWith<$Res> {
-  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_Loading implements _Loading {
-  const _$_Loading();
-
-  @override
-  String toString() {
-    return 'RecipeState.loading()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Loading);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<Recipe> allRecipes) loaded,
-    required TResult Function(String? errorMessage) error,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<Recipe> allRecipes)? loaded,
-    TResult? Function(String? errorMessage)? error,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<Recipe> allRecipes)? loaded,
-    TResult Function(String? errorMessage)? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Error value) error,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Error value)? error,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Loading implements RecipeState {
-  const factory _Loading() = _$_Loading;
-}
-
-/// @nodoc
-abstract class _$$_LoadedCopyWith<$Res> {
-  factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
-      __$$_LoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Recipe> allRecipes});
+  $Res call({List<Recipe> allRecipes, bool isLoading, String? errorMessage});
 }
 
 /// @nodoc
-class __$$_LoadedCopyWithImpl<$Res>
-    extends _$RecipeStateCopyWithImpl<$Res, _$_Loaded>
-    implements _$$_LoadedCopyWith<$Res> {
-  __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
+class __$$_RecipeStateCopyWithImpl<$Res>
+    extends _$RecipeStateCopyWithImpl<$Res, _$_RecipeState>
+    implements _$$_RecipeStateCopyWith<$Res> {
+  __$$_RecipeStateCopyWithImpl(
+      _$_RecipeState _value, $Res Function(_$_RecipeState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? allRecipes = null,
+    Object? isLoading = null,
+    Object? errorMessage = freezed,
   }) {
-    return _then(_$_Loaded(
+    return _then(_$_RecipeState(
       allRecipes: null == allRecipes
           ? _value._allRecipes
           : allRecipes // ignore: cast_nullable_to_non_nullable
               as List<Recipe>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_Loaded implements _Loaded {
-  const _$_Loaded({required final List<Recipe> allRecipes})
-      : _allRecipes = allRecipes;
-
-  final List<Recipe> _allRecipes;
-  @override
-  List<Recipe> get allRecipes {
-    if (_allRecipes is EqualUnmodifiableListView) return _allRecipes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_allRecipes);
-  }
-
-  @override
-  String toString() {
-    return 'RecipeState.loaded(allRecipes: $allRecipes)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Loaded &&
-            const DeepCollectionEquality()
-                .equals(other._allRecipes, _allRecipes));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_allRecipes));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
-      __$$_LoadedCopyWithImpl<_$_Loaded>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<Recipe> allRecipes) loaded,
-    required TResult Function(String? errorMessage) error,
-  }) {
-    return loaded(allRecipes);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<Recipe> allRecipes)? loaded,
-    TResult? Function(String? errorMessage)? error,
-  }) {
-    return loaded?.call(allRecipes);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<Recipe> allRecipes)? loaded,
-    TResult Function(String? errorMessage)? error,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(allRecipes);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Error value) error,
-  }) {
-    return loaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Error value)? error,
-  }) {
-    return loaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Loaded implements RecipeState {
-  const factory _Loaded({required final List<Recipe> allRecipes}) = _$_Loaded;
-
-  List<Recipe> get allRecipes;
-  @JsonKey(ignore: true)
-  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_ErrorCopyWith<$Res> {
-  factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
-      __$$_ErrorCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String? errorMessage});
-}
-
-/// @nodoc
-class __$$_ErrorCopyWithImpl<$Res>
-    extends _$RecipeStateCopyWithImpl<$Res, _$_Error>
-    implements _$$_ErrorCopyWith<$Res> {
-  __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? errorMessage = freezed,
-  }) {
-    return _then(_$_Error(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -494,115 +113,74 @@ class __$$_ErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Error implements _Error {
-  const _$_Error({this.errorMessage});
+class _$_RecipeState implements _RecipeState {
+  const _$_RecipeState(
+      {final List<Recipe> allRecipes = const [],
+      this.isLoading = false,
+      this.errorMessage})
+      : _allRecipes = allRecipes;
 
+  final List<Recipe> _allRecipes;
+  @override
+  @JsonKey()
+  List<Recipe> get allRecipes {
+    if (_allRecipes is EqualUnmodifiableListView) return _allRecipes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_allRecipes);
+  }
+
+  @override
+  @JsonKey()
+  final bool isLoading;
   @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'RecipeState.error(errorMessage: $errorMessage)';
+    return 'RecipeState(allRecipes: $allRecipes, isLoading: $isLoading, errorMessage: $errorMessage)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Error &&
+            other is _$_RecipeState &&
+            const DeepCollectionEquality()
+                .equals(other._allRecipes, _allRecipes) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, errorMessage);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_allRecipes),
+      isLoading,
+      errorMessage);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ErrorCopyWith<_$_Error> get copyWith =>
-      __$$_ErrorCopyWithImpl<_$_Error>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<Recipe> allRecipes) loaded,
-    required TResult Function(String? errorMessage) error,
-  }) {
-    return error(errorMessage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<Recipe> allRecipes)? loaded,
-    TResult? Function(String? errorMessage)? error,
-  }) {
-    return error?.call(errorMessage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<Recipe> allRecipes)? loaded,
-    TResult Function(String? errorMessage)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(errorMessage);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Error value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Error value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
+  _$$_RecipeStateCopyWith<_$_RecipeState> get copyWith =>
+      __$$_RecipeStateCopyWithImpl<_$_RecipeState>(this, _$identity);
 }
 
-abstract class _Error implements RecipeState {
-  const factory _Error({final String? errorMessage}) = _$_Error;
+abstract class _RecipeState implements RecipeState {
+  const factory _RecipeState(
+      {final List<Recipe> allRecipes,
+      final bool isLoading,
+      final String? errorMessage}) = _$_RecipeState;
 
+  @override
+  List<Recipe> get allRecipes;
+  @override
+  bool get isLoading;
+  @override
   String? get errorMessage;
+  @override
   @JsonKey(ignore: true)
-  _$$_ErrorCopyWith<_$_Error> get copyWith =>
+  _$$_RecipeStateCopyWith<_$_RecipeState> get copyWith =>
       throw _privateConstructorUsedError;
 }

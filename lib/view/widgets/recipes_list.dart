@@ -31,25 +31,23 @@ class _RecipesListState extends State<RecipesList> {
         height: 390.h,
         child: BlocBuilder<RecipeCubit, RecipeState>(
           builder: (_, state) {
-            return state.maybeWhen(
-              loaded: (recipes) => ListView.builder(
-                shrinkWrap: true,
-                physics: const ClampingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                itemCount: recipes.length,
-                itemBuilder: (context, index) => GestureDetector(
-                  onTap: () async => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          RecipeDetailsPage(recipe: recipes[index]),
-                    ),
+            if (state.isLoading) return const RecipesListShimmer();
+            if (state.errorMessage != null) return Text(state.errorMessage!);
+            return ListView.builder(
+              shrinkWrap: true,
+              physics: const ClampingScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              itemCount: state.allRecipes.length,
+              itemBuilder: (context, index) => GestureDetector(
+                onTap: () async => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        RecipeDetailsPage(recipe: state.allRecipes[index]),
                   ),
-                  child: _buildRecipeBox(recipes[index]),
                 ),
+                child: _buildRecipeBox(state.allRecipes[index]),
               ),
-              error: (errorMessage) => Text(errorMessage!),
-              orElse: () => const RecipesListShimmer(),
             );
           },
         ),

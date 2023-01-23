@@ -12,22 +12,18 @@ part 'recipe_state.dart';
 class RecipeCubit extends Cubit<RecipeState> {
   final FirebaseRepository _firebaseRepository;
 
-  RecipeCubit(this._firebaseRepository) : super(const RecipeState.initial());
+  RecipeCubit(this._firebaseRepository) : super(const RecipeState());
 
-  //TODO refactor this method with better states
   Future<void> loadRecipes(List<String> categoryName) async {
     try {
+      emit(const RecipeState(isLoading: true));
+
       List<Recipe> allRecipes = await _firebaseRepository.getAllRecipes();
 
       if (categoryName.isEmpty) {
-        emit(
-          RecipeState.loaded(allRecipes: allRecipes),
-        );
+        emit(RecipeState(allRecipes: allRecipes, isLoading: false));
       } else {
-        _Loaded recipeState = state as _Loaded;
         List<Recipe> recipesWithCategory = [];
-
-        emit(const RecipeState.loading());
 
         for (int i = 0; i < allRecipes.length; i++) {
           if (categoryName.contains(allRecipes[i].category)) {
@@ -35,15 +31,11 @@ class RecipeCubit extends Cubit<RecipeState> {
           }
         }
 
-        _$_Loaded newRecipeState =
-            recipeState.copyWith(allRecipes: recipesWithCategory);
-        emit(newRecipeState);
+        emit(state.copyWith(allRecipes: recipesWithCategory, isLoading: false));
       }
     } on Exception catch (e, st) {
       FirebaseCrashlyticsService.recordError(e, st);
-      emit(
-        RecipeState.error(errorMessage: e.toString()),
-      );
+      emit(RecipeState(errorMessage: e.toString(), isLoading: false));
     }
   }
 }

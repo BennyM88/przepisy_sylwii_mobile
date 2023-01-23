@@ -2,9 +2,9 @@ part of 'recipe_cubit.dart';
 
 @freezed
 class RecipeState with _$RecipeState {
-  const factory RecipeState.initial() = _Initial;
-  const factory RecipeState.loading() = _Loading;
-  const factory RecipeState.loaded({required List<Recipe> allRecipes}) =
-      _Loaded;
-  const factory RecipeState.error({String? errorMessage}) = _Error;
+  const factory RecipeState({
+    @Default([]) List<Recipe> allRecipes,
+    @Default(false) bool isLoading,
+    String? errorMessage,
+  }) = _RecipeState;
 }
