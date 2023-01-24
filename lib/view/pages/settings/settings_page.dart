@@ -1,10 +1,14 @@
+// ignore_for_file: discarded_futures
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:przepisy_sylwii_mobile/constants/colors.dart';
+import 'package:przepisy_sylwii_mobile/constants/rectangle_border.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/core/user_cubit/user_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
+import 'package:przepisy_sylwii_mobile/view/dialogs/delete_acc_dialog.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/custom_button.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/settings_row.dart';
 
@@ -25,7 +29,7 @@ class SettingsPage extends StatelessWidget {
               SizedBox(height: 48.h),
               Text('Konto', style: CustomTypography.uRegular18),
               SizedBox(height: 12.h),
-              _settingsAccountBox(),
+              _settingsAccountBox(context),
               SizedBox(height: 36.h),
               Text('Informacje', style: CustomTypography.uRegular18),
               SizedBox(height: 12.h),
@@ -82,7 +86,7 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  Widget _settingsAccountBox() {
+  Widget _settingsAccountBox(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10.w),
       decoration: BoxDecoration(
@@ -102,7 +106,11 @@ class SettingsPage extends StatelessWidget {
             icon: Icons.favorite_outline,
           ),
           SettingsRow(
-            onTap: () {},
+            onTap: () async => showModalBottomSheet(
+              context: context,
+              shape: DialogRectangleBorder.shapeBorderDialog,
+              builder: (_) => const DeleteAccDialog(),
+            ),
             content: 'Usuń konto',
             icon: Icons.delete_outlined,
           ),
