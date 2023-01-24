@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/core/user_cubit/user_cubit.dart';
@@ -30,11 +31,18 @@ class SettingsPage extends StatelessWidget {
               SizedBox(height: 12.h),
               _settingsInfoBox(),
               const Spacer(),
-              Center(
-                child: Text(
-                  'Aktualna wersja: 1.0.0',
-                  style: CustomTypography.uRegular14n40,
-                ),
+              FutureBuilder<PackageInfo>(
+                future: PackageInfo.fromPlatform(),
+                builder: (_, snapshot) {
+                  PackageInfo? data = snapshot.data;
+                  if (data == null) return const SizedBox();
+                  return Center(
+                    child: Text(
+                      'Aktualna wersja: ${data.version}',
+                      style: CustomTypography.uRegular14n40,
+                    ),
+                  );
+                },
               ),
               SizedBox(height: 12.h),
               CustomButton(
