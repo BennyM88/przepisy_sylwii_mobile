@@ -8,6 +8,7 @@ class CustomButton extends StatelessWidget {
   final Widget? prefix;
   final Widget? suffix;
   final void Function()? onPressed;
+  final bool isPink;
 
   // Special variant:
   factory CustomButton.loader() {
@@ -30,6 +31,7 @@ class CustomButton extends StatelessWidget {
     this.prefix,
     this.suffix,
     required this.onPressed,
+    this.isPink = false,
     Key? key,
   }) : super(key: key);
 
@@ -39,8 +41,9 @@ class CustomButton extends StatelessWidget {
       onPressed: onPressed,
       style: ButtonStyle(
         elevation: MaterialStateProperty.all<double>(0.0),
-        backgroundColor:
-            MaterialStateProperty.all<Color>(CustomColors.neutral00),
+        backgroundColor: MaterialStateProperty.all<Color>(
+          isPink ? CustomColors.pink : CustomColors.neutral00,
+        ),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16.r),
@@ -56,7 +59,9 @@ class CustomButton extends StatelessWidget {
                   fit: BoxFit.scaleDown,
                   child: Text(
                     content,
-                    style: CustomTypography.uRegular18white,
+                    style: isPink
+                        ? CustomTypography.uRegular18
+                        : CustomTypography.uRegular18white,
                     softWrap: false,
                   ),
                 ),

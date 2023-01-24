@@ -121,6 +121,18 @@ class RecipeDetailsPage extends StatelessWidget {
             'Składniki',
             style: CustomTypography.uRegular22,
           ),
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const ClampingScrollPhysics(),
+            itemCount: recipe.ingredients.length,
+            itemBuilder: (_, index) => Padding(
+              padding: EdgeInsets.only(bottom: 8.h),
+              child: Text(
+                '- ${recipe.ingredients[index]}',
+                style: CustomTypography.uRegular16,
+              ),
+            ),
+          ),
         ],
       ),
     );

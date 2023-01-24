@@ -15,10 +15,12 @@ class UserCubit extends Cubit<UserState> {
   final FirebaseAuthRepository _firebaseAuthRepository;
   StreamSubscription<User?>? _userSubscription;
 
-  UserCubit(this._firebaseAuthRepository) : super(UserUnauthenticated());
+  UserCubit(this._firebaseAuthRepository) : super(UserUnauthenticated()) {
+    // init();
+  }
 
   void init() {
-    _userSubscription = _initFirebaseTokenSubscription();
+    _userSubscription ??= _initFirebaseTokenSubscription();
   }
 
   StreamSubscription<User?> _initFirebaseTokenSubscription() {
