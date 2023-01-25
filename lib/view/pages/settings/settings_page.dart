@@ -9,6 +9,7 @@ import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/core/user_cubit/user_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/view/dialogs/delete_acc_dialog.dart';
+import 'package:przepisy_sylwii_mobile/view/pages/user_details/user_details_page.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/custom_button.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/settings_row.dart';
 
@@ -96,7 +97,12 @@ class SettingsPage extends StatelessWidget {
       child: Column(
         children: [
           SettingsRow(
-            onTap: () {},
+            onTap: () async => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const UserDetailsPage(),
+              ),
+            ),
             content: 'Twoje dane',
             icon: Icons.person_outline,
           ),

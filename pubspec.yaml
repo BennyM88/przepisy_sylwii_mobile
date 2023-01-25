@@ -25,6 +25,7 @@ dependencies:
   injectable: ^2.1.0
   json_annotation: ^4.7.0
   json_serializable: ^6.5.4
+  lottie: ^2.2.0
   package_info_plus: ^3.0.2
   shimmer: ^2.0.0
   sliding_up_panel: ^2.0.0+1
@@ -42,6 +43,7 @@ flutter:
   assets:
     - config/
     - assets/images/
+    - assets/lottie/
 
   fonts:
     - family: Ubuntu

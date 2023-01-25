@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/core/login_cubit/login_cubit.dart';
@@ -29,10 +30,12 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: [
                 SizedBox(height: 60.h),
-                Container(
+                SizedBox(
                   height: 200.h,
-                  width: double.infinity,
-                  color: Colors.red,
+                  child: Lottie.asset(
+                    'assets/lottie/cooking.json',
+                    repeat: false,
+                  ),
                 ),
                 SizedBox(height: 48.h),
                 _googleButton(

@@ -30,38 +30,7 @@ class _RecipeDetailsPreparationPageState
           child: Column(
             children: [
               SizedBox(height: 28.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                    onTap: () => Navigator.pop(context),
-                    child: Icon(
-                      Icons.arrow_back_ios_new,
-                      size: 26.sp,
-                    ),
-                  ),
-                  SmoothPageIndicator(
-                    controller: _pageController,
-                    count: widget.recipe.preparation.length,
-                    effect: ScaleEffect(
-                      scale: 1.8,
-                      dotWidth: 7.w,
-                      dotHeight: 7.h,
-                      spacing: 15.w,
-                      activeDotColor: CustomColors.neutral00,
-                      dotColor: CustomColors.neutral90,
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () => Navigator.of(context)
-                        .popUntil((route) => route.isFirst),
-                    child: Icon(
-                      Icons.clear,
-                      size: 28.sp,
-                    ),
-                  ),
-                ],
-              ),
+              _topBar(context),
               Expanded(
                 child: PageView.builder(
                   controller: _pageController,
@@ -77,6 +46,40 @@ class _RecipeDetailsPreparationPageState
           ),
         ),
       ),
+    );
+  }
+
+  Widget _topBar(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        InkWell(
+          onTap: () => Navigator.pop(context),
+          child: Icon(
+            Icons.arrow_back_ios_new,
+            size: 26.sp,
+          ),
+        ),
+        SmoothPageIndicator(
+          controller: _pageController,
+          count: widget.recipe.preparation.length,
+          effect: ScaleEffect(
+            scale: 1.8,
+            dotWidth: 7.w,
+            dotHeight: 7.h,
+            spacing: 15.w,
+            activeDotColor: CustomColors.neutral00,
+            dotColor: CustomColors.neutral90,
+          ),
+        ),
+        InkWell(
+          onTap: () => Navigator.of(context).popUntil((route) => route.isFirst),
+          child: Icon(
+            Icons.clear,
+            size: 28.sp,
+          ),
+        ),
+      ],
     );
   }
 
