@@ -16,6 +16,9 @@ import 'package:przepisy_sylwii_mobile/services/config_reader/config_reader.dart
 import 'package:przepisy_sylwii_mobile/services/firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/enter_exit_transition.dart';
 
+final GlobalKey<ScaffoldMessengerState> scaffoldKey =
+    GlobalKey<ScaffoldMessengerState>();
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ConfigReader.initialize();
@@ -47,9 +50,11 @@ class MyApp extends StatelessWidget {
         return MainProvider(
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
+            scaffoldMessengerKey: scaffoldKey,
             title: 'PrzepisySylwii',
             theme: ThemeData(
               brightness: Brightness.light,
+              useMaterial3: true,
               scaffoldBackgroundColor: CustomColors.neutral100,
               pageTransitionsTheme: PageTransitionsTheme(
                 builders: {

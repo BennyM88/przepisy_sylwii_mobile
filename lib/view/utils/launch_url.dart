@@ -1,3 +1,4 @@
+import 'package:przepisy_sylwii_mobile/view/utils/snackbar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 Future<void> openPrivacyOrTerms(String url) async {
@@ -5,7 +6,7 @@ Future<void> openPrivacyOrTerms(String url) async {
   try {
     if (!await launchUrl(privacyOrTerms)) throw Exception();
   } catch (_) {
-    print('Unable to open an URL');
+    displaySnackBar('Nie można otworzyć linku');
   }
 }
 
@@ -20,6 +21,6 @@ Future<void> openMail() async {
   try {
     if (!await launchUrl(email)) throw Exception();
   } catch (_) {
-    print('Unable to open an URL');
+    displaySnackBar('Nie można otworzyć maila');
   }
 }
