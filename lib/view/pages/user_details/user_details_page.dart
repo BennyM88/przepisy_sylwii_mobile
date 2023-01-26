@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/core/user_cubit/user_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/models/user_profile.dart';
+import 'package:przepisy_sylwii_mobile/view/widgets/custom_button.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/user_details_row.dart';
 
 class UserDetailsPage extends StatefulWidget {
@@ -19,6 +21,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
   @override
   void initState() {
     super.initState();
+
     UserState userState = getIt<UserCubit>().state;
     if (userState is UserAuthenticated) {
       userProfile = userState.userProfile;
@@ -47,6 +50,13 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
               UserDetailsRow(
                 title: 'Data utworzenia',
                 content: userProfile?.formatDate() ?? '',
+              ),
+              SizedBox(height: 48.h),
+              CustomButton(
+                content: 'Zmień hasło',
+                onPressed: () async {
+                  print(await GoogleSignIn().isSignedIn());
+                },
               ),
             ],
           ),

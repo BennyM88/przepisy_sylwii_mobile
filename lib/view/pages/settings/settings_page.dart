@@ -6,10 +6,12 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/rectangle_border.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
+import 'package:przepisy_sylwii_mobile/constants/url.dart';
 import 'package:przepisy_sylwii_mobile/core/user_cubit/user_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/view/dialogs/delete_acc_dialog.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/user_details/user_details_page.dart';
+import 'package:przepisy_sylwii_mobile/view/utils/launch_url.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/custom_button.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/settings_row.dart';
 
@@ -135,17 +137,17 @@ class SettingsPage extends StatelessWidget {
       child: Column(
         children: [
           SettingsRow(
-            onTap: () {},
+            onTap: () async => openPrivacyOrTerms(PRIVACY),
             content: 'Polityka prywatności',
             icon: Icons.visibility_off_outlined,
           ),
           SettingsRow(
-            onTap: () {},
+            onTap: () async => openPrivacyOrTerms(TERMS),
             content: 'Warunki użytkowania',
             icon: Icons.article_outlined,
           ),
           SettingsRow(
-            onTap: () {},
+            onTap: () async => openMail(),
             content: 'Kontakt',
             icon: Icons.mail_outline,
           ),
