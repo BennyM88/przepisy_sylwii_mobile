@@ -46,7 +46,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
               ),
               UserDetailsRow(
                 title: 'Data utworzenia',
-                content: userProfile?.accountCreated ?? '',
+                content: userProfile?.formatDate() ?? '',
               ),
             ],
           ),

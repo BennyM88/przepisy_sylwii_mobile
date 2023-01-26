@@ -126,12 +126,13 @@ class __$$_UserProfileCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UserProfile implements _UserProfile {
+class _$_UserProfile extends _UserProfile {
   const _$_UserProfile(
       {required this.email,
       this.accountCreated = '',
       this.firstName = '',
-      this.uid = ''});
+      this.uid = ''})
+      : super._();
 
   @override
   final String email;
@@ -174,12 +175,13 @@ class _$_UserProfile implements _UserProfile {
       __$$_UserProfileCopyWithImpl<_$_UserProfile>(this, _$identity);
 }
 
-abstract class _UserProfile implements UserProfile {
+abstract class _UserProfile extends UserProfile {
   const factory _UserProfile(
       {required final String email,
       final String accountCreated,
       final String firstName,
       final String uid}) = _$_UserProfile;
+  const _UserProfile._() : super._();
 
   @override
   String get email;
