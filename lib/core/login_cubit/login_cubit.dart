@@ -27,7 +27,7 @@ class LoginCubit extends Cubit<LoginState> {
       emit(const LoginState.success());
     } on FirebaseAuthException catch (e, st) {
       FirebaseCrashlyticsService.recordError(e, st);
-      emit(LoginState.error(errorMessage: e.message));
+      emit(LoginState.error(errorMessage: getMessageFromErrorCode(e.code)));
     }
   }
 
@@ -41,7 +41,24 @@ class LoginCubit extends Cubit<LoginState> {
       emit(const LoginState.success());
     } on Exception catch (e, st) {
       FirebaseCrashlyticsService.recordError(e, st);
-      emit(const LoginState.error(errorMessage: 'Something went wrong'));
+      emit(const LoginState.error(errorMessage: 'Coś poszło nie tak!'));
+    }
+  }
+
+  String getMessageFromErrorCode(String code) {
+    switch (code) {
+      case 'user-not-found':
+        return 'Nie znaleziono takiego użytkownika';
+      case 'invalid-email':
+        return 'Nie poprawny format emaila';
+      case 'wrong-password':
+        return 'Nie poprawny email lub hasło';
+      case 'too-many-requests':
+        return 'Za dużo prób, spróbuj ponownie później';
+      case 'unknown':
+        return 'Pola nie mogą być puste';
+      default:
+        return 'Błąd logowania, spróbuj ponownie';
     }
   }
 }

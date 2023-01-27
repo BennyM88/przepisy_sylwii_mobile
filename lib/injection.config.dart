@@ -38,8 +38,10 @@ extension GetItInjectableX on _i1.GetIt {
         _i5.LoginCubit(gh<_i3.FirebaseAuthRepository>()));
     gh.singleton<_i6.RecipeCubit>(
         _i6.RecipeCubit(gh<_i4.FirebaseRepository>()));
-    gh.singleton<_i7.UserCubit>(
-        _i7.UserCubit(gh<_i3.FirebaseAuthRepository>()));
+    gh.singleton<_i7.UserCubit>(_i7.UserCubit(
+      gh<_i3.FirebaseAuthRepository>(),
+      gh<_i6.RecipeCubit>(),
+    ));
     gh.singleton<_i8.CategoryCubit>(_i8.CategoryCubit(gh<_i6.RecipeCubit>()));
     return this;
   }

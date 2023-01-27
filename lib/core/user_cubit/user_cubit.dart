@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
+import 'package:przepisy_sylwii_mobile/core/recipe_cubit/recipe_cubit.dart';
 import 'package:przepisy_sylwii_mobile/models/user_profile.dart';
 import 'package:przepisy_sylwii_mobile/services/firebase_auth_repository/firebase_auth_repository.dart';
 import 'package:przepisy_sylwii_mobile/services/firebase_crashlytics/firebase_crashlytics.dart';
@@ -13,10 +14,12 @@ part 'user_state.dart';
 @singleton
 class UserCubit extends Cubit<UserState> {
   final FirebaseAuthRepository _firebaseAuthRepository;
+  final RecipeCubit _recipeCubit;
   StreamSubscription<User?>? _userSubscription;
 
-  UserCubit(this._firebaseAuthRepository) : super(UserUnauthenticated()) {
-    // init();
+  UserCubit(this._firebaseAuthRepository, this._recipeCubit)
+      : super(UserUnauthenticated()) {
+    init();
   }
 
   void init() {
@@ -31,6 +34,7 @@ class UserCubit extends Cubit<UserState> {
         emit(UserUnauthenticated());
       } else {
         fillUserWithData();
+        _recipeCubit.loadRecipes([]);
         emit(UserAuthenticated(user: user));
       }
     });
