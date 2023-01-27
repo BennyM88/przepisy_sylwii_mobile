@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:przepisy_sylwii_mobile/constants/colors.dart';
-import 'package:przepisy_sylwii_mobile/constants/rectangle_border.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/constants/url.dart';
 import 'package:przepisy_sylwii_mobile/core/user_cubit/user_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/view/dialogs/delete_acc_dialog.dart';
+import 'package:przepisy_sylwii_mobile/view/pages/favorites/favorites_page.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/user_details/user_details_page.dart';
 import 'package:przepisy_sylwii_mobile/view/utils/launch_url.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/custom_button.dart';
@@ -109,14 +109,18 @@ class SettingsPage extends StatelessWidget {
             icon: Icons.person_outline,
           ),
           SettingsRow(
-            onTap: () {},
+            onTap: () async => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const FavoritesPage(),
+              ),
+            ),
             content: 'Ulubione dania',
             icon: Icons.favorite_outline,
           ),
           SettingsRow(
             onTap: () async => showModalBottomSheet(
               context: context,
-              shape: DialogRectangleBorder.shapeBorderDialog,
               builder: (_) => const DeleteAccDialog(),
             ),
             content: 'Usuń konto',

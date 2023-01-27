@@ -5,6 +5,7 @@ import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/core/user_cubit/user_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/models/user_profile.dart';
+import 'package:przepisy_sylwii_mobile/view/utils/snackbar.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/custom_button.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/user_details_row.dart';
 
@@ -55,7 +56,11 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
               CustomButton(
                 content: 'Zmień hasło',
                 onPressed: () async {
-                  print(await GoogleSignIn().isSignedIn());
+                  if (await GoogleSignIn().isSignedIn()) {
+                    displaySnackBar('Nie można zmienić hasła dla konta Google');
+                    return;
+                  }
+                  //TODO change password
                 },
               ),
             ],
