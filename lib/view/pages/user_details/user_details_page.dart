@@ -5,6 +5,7 @@ import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/core/user_cubit/user_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/models/user_profile.dart';
+import 'package:przepisy_sylwii_mobile/view/dialogs/change_pswd_dialog.dart';
 import 'package:przepisy_sylwii_mobile/view/utils/snackbar.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/custom_button.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/user_details_row.dart';
@@ -35,35 +36,51 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
-          child: Column(
-            children: [
-              SizedBox(height: 48.h),
-              _topBar(context),
-              SizedBox(height: 48.h),
-              UserDetailsRow(
-                title: 'Imie',
-                content: userProfile?.firstName ?? '',
-              ),
-              UserDetailsRow(
-                title: 'Email',
-                content: userProfile?.email ?? '',
-              ),
-              UserDetailsRow(
-                title: 'Data utworzenia',
-                content: userProfile?.formatDate() ?? '',
-              ),
-              SizedBox(height: 48.h),
-              CustomButton(
-                content: 'Zmień hasło',
-                onPressed: () async {
-                  if (await GoogleSignIn().isSignedIn()) {
-                    displaySnackBar('Nie można zmienić hasła dla konta Google');
-                    return;
-                  }
-                  //TODO change password
-                },
-              ),
-            ],
+          child: SingleChildScrollView(
+            physics: const NeverScrollableScrollPhysics(),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(height: 48.h),
+                _topBar(context),
+                SizedBox(height: 48.h),
+                UserDetailsRow(
+                  title: 'Imie',
+                  content: userProfile?.firstName ?? '',
+                ),
+                UserDetailsRow(
+                  title: 'Email',
+                  content: userProfile?.email ?? '',
+                ),
+                UserDetailsRow(
+                  title: 'Data utworzenia',
+                  content: userProfile?.formatDate() ?? '',
+                ),
+                SizedBox(height: 48.h),
+                CustomButton(
+                  content: 'Zmień hasło',
+                  onPressed: () async {
+                    if (await GoogleSignIn().isSignedIn()) {
+                      displaySnackBar(
+                          'Nie można zmienić hasła dla konta Google');
+                      return;
+                    }
+                    if (context.mounted) {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (_) => Padding(
+                          padding: EdgeInsets.only(
+                            bottom: MediaQuery.of(context).viewInsets.bottom,
+                          ),
+                          child: const ChangePswdDialog(),
+                        ),
+                      );
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
