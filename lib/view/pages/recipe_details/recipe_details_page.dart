@@ -24,9 +24,19 @@ class RecipeDetailsPage extends StatelessWidget {
             builder: (context) => RecipeDetailsPreparationPage(recipe: recipe),
           ),
         ),
-        label: Text(
-          'Zacznij gotować',
-          style: CustomTypography.uRegular16n100,
+        label: Row(
+          children: [
+            Text(
+              'Zacznij gotować',
+              style: CustomTypography.uRegular16n100,
+            ),
+            SizedBox(width: 6.w),
+            Icon(
+              Icons.arrow_forward_rounded,
+              color: CustomColors.neutral100,
+              size: 20.sp,
+            )
+          ],
         ),
         backgroundColor: CustomColors.neutral00,
       ),
