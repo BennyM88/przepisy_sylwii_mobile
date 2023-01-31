@@ -35,7 +35,7 @@ class SettingsRow extends StatelessWidget {
             Icon(
               Icons.arrow_forward_ios_rounded,
               size: 14.sp,
-            )
+            ),
           ],
         ),
       ),

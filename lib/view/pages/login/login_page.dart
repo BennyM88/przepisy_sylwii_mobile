@@ -38,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 SizedBox(height: 48.h),
-                _googleButton(
+                _GoogleButton(
                   onTap: () async => getIt<LoginCubit>().signInWithGoogle(),
                 ),
                 SizedBox(height: 24.h),
@@ -107,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                     Text(
                       'Zarejestruj się!',
                       style: CustomTypography.uBold14,
-                    )
+                    ),
                   ],
                 ),
                 SizedBox(height: 16.h),
@@ -126,9 +126,21 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _googleButton({
-    required void Function() onTap,
-  }) {
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+}
+
+class _GoogleButton extends StatelessWidget {
+  final void Function() onTap;
+
+  const _GoogleButton({required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
       child: Container(
@@ -147,13 +159,6 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
   }
 }
 

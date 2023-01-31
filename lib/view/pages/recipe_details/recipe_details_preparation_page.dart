@@ -119,7 +119,7 @@ class _RecipeDetailsPreparationPageState
                   preparation,
                   style: CustomTypography.uRegular16,
                 ),
-              )
+              ),
             ],
           ),
         ),

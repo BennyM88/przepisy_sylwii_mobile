@@ -35,7 +35,7 @@ class RecipeDetailsPage extends StatelessWidget {
               Icons.arrow_forward_rounded,
               color: CustomColors.neutral100,
               size: 20.sp,
-            )
+            ),
           ],
         ),
         backgroundColor: CustomColors.neutral00,
@@ -48,13 +48,20 @@ class RecipeDetailsPage extends StatelessWidget {
           topLeft: Radius.circular(36.r),
           topRight: Radius.circular(36.r),
         ),
-        body: _body(context),
-        panel: _panel(),
+        body: _Body(recipe),
+        panel: _Panel(recipe),
       ),
     );
   }
+}
 
-  Widget _body(BuildContext context) {
+class _Body extends StatelessWidget {
+  final Recipe recipe;
+
+  const _Body(this.recipe);
+
+  @override
+  Widget build(BuildContext context) {
     return Stack(
       children: [
         CachedNetworkImage(
@@ -93,8 +100,15 @@ class RecipeDetailsPage extends StatelessWidget {
       ],
     );
   }
+}
 
-  Widget _panel() {
+class _Panel extends StatelessWidget {
+  final Recipe recipe;
+
+  const _Panel(this.recipe);
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(32.h),
       child: Column(
