@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
                   onTap: () async => getIt<LoginCubit>().signInWithGoogle(),
                 ),
                 SizedBox(height: 24.h),
-                _divider(),
+                const _Divider(),
                 SizedBox(height: 24.h),
                 BlocBuilder<LoginCubit, LoginState>(
                   builder: (_, state) {
@@ -149,7 +149,19 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _divider() {
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+}
+
+class _Divider extends StatelessWidget {
+  const _Divider();
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 24.w),
       child: Row(
@@ -177,12 +189,5 @@ class _LoginPageState extends State<LoginPage> {
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
   }
 }

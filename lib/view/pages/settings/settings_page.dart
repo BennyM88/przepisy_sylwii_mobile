@@ -28,15 +28,15 @@ class SettingsPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 48.h),
-              _topBar(context),
+              const _TopBar(),
               SizedBox(height: 48.h),
               Text('Konto', style: CustomTypography.uRegular18),
               SizedBox(height: 12.h),
-              _settingsAccountBox(context),
+              const _SettingsAccountBox(),
               SizedBox(height: 36.h),
               Text('Informacje', style: CustomTypography.uRegular18),
               SizedBox(height: 12.h),
-              _settingsInfoBox(),
+              const _SettingsInfoBox(),
               const Spacer(),
               FutureBuilder<PackageInfo>(
                 future: PackageInfo.fromPlatform(),
@@ -67,8 +67,13 @@ class SettingsPage extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _topBar(BuildContext context) {
+class _TopBar extends StatelessWidget {
+  const _TopBar();
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       children: [
         InkWell(
@@ -88,8 +93,13 @@ class SettingsPage extends StatelessWidget {
       ],
     );
   }
+}
 
-  Widget _settingsAccountBox(BuildContext context) {
+class _SettingsAccountBox extends StatelessWidget {
+  const _SettingsAccountBox();
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10.w),
       decoration: BoxDecoration(
@@ -130,8 +140,13 @@ class SettingsPage extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _settingsInfoBox() {
+class _SettingsInfoBox extends StatelessWidget {
+  const _SettingsInfoBox();
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10.w),
       decoration: BoxDecoration(

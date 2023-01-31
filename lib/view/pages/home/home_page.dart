@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 28.h),
-            _topBar(context),
+            const _TopBar(),
             SizedBox(height: 42.h),
             Padding(
               padding: EdgeInsets.only(left: 24.w),
@@ -37,8 +37,13 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _topBar(BuildContext context) {
+class _TopBar extends StatelessWidget {
+  const _TopBar();
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 24.w),
       child: Column(

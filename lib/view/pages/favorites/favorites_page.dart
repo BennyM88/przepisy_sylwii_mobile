@@ -14,15 +14,20 @@ class FavoritesPage extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: 48.h),
-              _topBar(context),
+              const _TopBar(),
             ],
           ),
         ),
       ),
     );
   }
+}
 
-  Widget _topBar(BuildContext context) {
+class _TopBar extends StatelessWidget {
+  const _TopBar();
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

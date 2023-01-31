@@ -42,7 +42,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 SizedBox(height: 48.h),
-                _topBar(context),
+                const _TopBar(),
                 SizedBox(height: 48.h),
                 UserDetailsRow(
                   title: 'Imie',
@@ -87,8 +87,13 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
       ),
     );
   }
+}
 
-  Widget _topBar(BuildContext context) {
+class _TopBar extends StatelessWidget {
+  const _TopBar();
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
