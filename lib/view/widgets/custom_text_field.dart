@@ -34,14 +34,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
       obscureText: widget.isPassword ? true : false,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16.r),
+          borderRadius: BorderRadius.all(Radius.circular(16.r)),
           borderSide: const BorderSide(color: CustomColors.neutral70),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16.r),
+          borderRadius: BorderRadius.all(Radius.circular(16.r)),
         ),
         disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16.r),
+          borderRadius: BorderRadius.all(Radius.circular(16.r)),
           borderSide: const BorderSide(color: CustomColors.neutral90),
         ),
         labelText: widget.hintText,

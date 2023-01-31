@@ -62,7 +62,8 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                   onPressed: () async {
                     if (await GoogleSignIn().isSignedIn()) {
                       displaySnackBar(
-                          'Nie można zmienić hasła dla konta Google');
+                        'Nie można zmienić hasła dla konta Google',
+                      );
                       return;
                     }
                     if (context.mounted) {

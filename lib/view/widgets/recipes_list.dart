@@ -75,7 +75,7 @@ class _RecipesListState extends State<RecipesList> {
               ],
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(16.r),
+              borderRadius: BorderRadius.all(Radius.circular(16.r)),
               child: CachedNetworkImage(
                 imageUrl: recipe.url,
                 fit: BoxFit.cover,
@@ -94,7 +94,7 @@ class _RecipesListState extends State<RecipesList> {
               padding: EdgeInsets.all(16.h),
               decoration: BoxDecoration(
                 color: CustomColors.pink,
-                borderRadius: BorderRadius.circular(16.r),
+                borderRadius: BorderRadius.all(Radius.circular(16.r)),
                 boxShadow: [
                   BoxShadow(
                     color: CustomColors.neutral90,

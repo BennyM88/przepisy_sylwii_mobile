@@ -94,7 +94,7 @@ class SettingsPage extends StatelessWidget {
       padding: EdgeInsets.all(10.w),
       decoration: BoxDecoration(
         color: CustomColors.neutral99,
-        borderRadius: BorderRadius.circular(12.r),
+        borderRadius: BorderRadius.all(Radius.circular(12.r)),
       ),
       child: Column(
         children: [
@@ -136,7 +136,7 @@ class SettingsPage extends StatelessWidget {
       padding: EdgeInsets.all(10.w),
       decoration: BoxDecoration(
         color: CustomColors.neutral99,
-        borderRadius: BorderRadius.circular(12.r),
+        borderRadius: BorderRadius.all(Radius.circular(12.r)),
       ),
       child: Column(
         children: [

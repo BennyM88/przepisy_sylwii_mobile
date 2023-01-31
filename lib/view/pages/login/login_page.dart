@@ -135,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
         padding: EdgeInsets.all(10.h),
         decoration: BoxDecoration(
           border: Border.all(),
-          borderRadius: BorderRadius.circular(16.r),
+          borderRadius: BorderRadius.all(Radius.circular(16.r)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

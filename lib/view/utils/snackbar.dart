@@ -14,7 +14,7 @@ Future<void> displaySnackBar(String content) async {
             padding: EdgeInsets.all(16.sp),
             decoration: BoxDecoration(
               color: CustomColors.neutral40,
-              borderRadius: BorderRadius.circular(10.r),
+              borderRadius: BorderRadius.all(Radius.circular(10.r)),
             ),
             child: Text(content),
           ),

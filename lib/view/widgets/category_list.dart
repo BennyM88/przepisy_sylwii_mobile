@@ -58,7 +58,7 @@ class _CategoryListState extends State<CategoryList> {
           color: state.category.contains(categoryName)
               ? CustomColors.neutral00
               : CustomColors.neutral95.withOpacity(0.5),
-          borderRadius: BorderRadius.circular(12.r),
+          borderRadius: BorderRadius.all(Radius.circular(12.r)),
         ),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 22.w),

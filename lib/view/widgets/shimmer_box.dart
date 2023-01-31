@@ -31,7 +31,7 @@ class ShimmerBox extends StatelessWidget {
                   bottomLeft: Radius.circular(radius.r),
                   bottomRight: Radius.circular(radius.r),
                 )
-              : BorderRadius.circular(radius.r),
+              : BorderRadius.all(Radius.circular(radius.r)),
           color: CustomColors.neutral100,
         ),
       ),

@@ -88,7 +88,7 @@ class _RecipeDetailsPreparationPageState
       children: [
         SizedBox(height: 48.h),
         ClipRRect(
-          borderRadius: BorderRadius.circular(16.r),
+          borderRadius: BorderRadius.all(Radius.circular(16.r)),
           child: CachedNetworkImage(
             imageUrl: url,
             fit: BoxFit.cover,
