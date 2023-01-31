@@ -10,18 +10,8 @@ import 'package:przepisy_sylwii_mobile/view/pages/recipe_details/recipe_details_
 import 'package:przepisy_sylwii_mobile/view/widgets/recipes_list_shimmer.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/shimmer_box.dart';
 
-class RecipesList extends StatefulWidget {
+class RecipesList extends StatelessWidget {
   const RecipesList({super.key});
-
-  @override
-  State<RecipesList> createState() => _RecipesListState();
-}
-
-class _RecipesListState extends State<RecipesList> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
