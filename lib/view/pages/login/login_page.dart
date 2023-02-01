@@ -6,6 +6,7 @@ import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/core/login_cubit/login_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
+import 'package:przepisy_sylwii_mobile/view/pages/register/register_page.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/custom_button.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/custom_text_field.dart';
 
@@ -97,26 +98,11 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
                 SizedBox(height: 24.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Nie masz konta? ',
-                      style: CustomTypography.uRegular14,
-                    ),
-                    Text(
-                      'Zarejestruj się!',
-                      style: CustomTypography.uBold14,
-                    ),
-                  ],
-                ),
+                const _BottomInfo(),
                 SizedBox(height: 16.h),
-                GestureDetector(
-                  onTap: () {},
-                  child: Text(
-                    'Zapomniałeś hasła?',
-                    style: CustomTypography.uBold14,
-                  ),
+                Text(
+                  'Zapomniałeś hasła?',
+                  style: CustomTypography.uBold14,
                 ),
               ],
             ),
@@ -193,6 +179,35 @@ class _Divider extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _BottomInfo extends StatelessWidget {
+  const _BottomInfo();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          'Nie masz konta? ',
+          style: CustomTypography.uRegular14,
+        ),
+        GestureDetector(
+          onTap: () async => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const RegisterPage(),
+            ),
+          ),
+          child: Text(
+            'Zarejestruj się!',
+            style: CustomTypography.uBold14,
+          ),
+        ),
+      ],
     );
   }
 }

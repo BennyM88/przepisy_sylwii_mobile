@@ -50,6 +50,7 @@ class FirebaseAuthRepository {
   }
 
   Future<void> createUserWithEmailAndPassword({
+    required String name,
     required String email,
     required String password,
   }) async {
@@ -61,7 +62,7 @@ class FirebaseAuthRepository {
     await CustomFirestorePaths.usersPath.doc(result.user?.email).set({
       'email': email,
       'creationTime': result.user?.metadata.creationTime.toString(),
-      'firstName': 'hello',
+      'firstName': name,
       'uid': result.user?.uid,
     });
   }
