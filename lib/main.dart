@@ -56,6 +56,9 @@ class MyApp extends StatelessWidget {
               brightness: Brightness.light,
               useMaterial3: true,
               scaffoldBackgroundColor: CustomColors.neutral100,
+              textSelectionTheme: const TextSelectionThemeData(
+                cursorColor: CustomColors.neutral30,
+              ),
               pageTransitionsTheme: PageTransitionsTheme(
                 builders: {
                   TargetPlatform.android: EnterExitTransitionsBuilder(),

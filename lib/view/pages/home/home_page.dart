@@ -71,7 +71,7 @@ class _TopBar extends StatelessWidget {
                 onTap: () {},
                 child: Icon(
                   CupertinoIcons.search,
-                  size: 24.sp,
+                  size: 26.sp,
                 ),
               ),
               SizedBox(width: 28.w),
@@ -84,7 +84,7 @@ class _TopBar extends StatelessWidget {
                 ),
                 child: Icon(
                   Icons.notes,
-                  size: 24.sp,
+                  size: 26.sp,
                 ),
               ),
             ],

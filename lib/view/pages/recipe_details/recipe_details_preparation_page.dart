@@ -87,20 +87,23 @@ class _RecipeDetailsPreparationPageState
     return Column(
       children: [
         SizedBox(height: 48.h),
-        ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(16.r)),
-          child: CachedNetworkImage(
-            imageUrl: url,
-            fit: BoxFit.cover,
-            height: 240.h,
-            width: double.infinity,
-            filterQuality: FilterQuality.high,
-            placeholder: (_, __) => const ShimmerBox(
-              height: 380,
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 6.w),
+          child: ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(16.r)),
+            child: CachedNetworkImage(
+              imageUrl: url,
+              fit: BoxFit.cover,
+              height: 240.h,
               width: double.infinity,
-              radius: 0,
+              filterQuality: FilterQuality.high,
+              placeholder: (_, __) => const ShimmerBox(
+                height: 380,
+                width: double.infinity,
+                radius: 0,
+              ),
+              errorWidget: (_, __, ___) => const Icon(Icons.error),
             ),
-            errorWidget: (_, __, ___) => const Icon(Icons.error),
           ),
         ),
         SizedBox(height: 48.h),

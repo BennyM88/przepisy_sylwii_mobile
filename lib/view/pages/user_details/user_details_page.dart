@@ -43,7 +43,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
               children: [
                 SizedBox(height: 48.h),
                 const _TopBar(),
-                SizedBox(height: 48.h),
+                SizedBox(height: 12.h),
                 UserDetailsRow(
                   title: 'Imie',
                   content: userProfile?.firstName ?? '',

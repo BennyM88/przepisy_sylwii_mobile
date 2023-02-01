@@ -81,7 +81,7 @@ class _Body extends StatelessWidget {
             child: Icon(
               Icons.arrow_back_ios_new,
               color: CustomColors.neutral100,
-              size: 26.sp,
+              size: 28.sp,
             ),
           ),
         ),
@@ -93,7 +93,7 @@ class _Body extends StatelessWidget {
             child: Icon(
               Icons.favorite,
               color: CustomColors.neutral100,
-              size: 28.sp,
+              size: 30.sp,
             ),
           ),
         ),
@@ -153,7 +153,7 @@ class _Panel extends StatelessWidget {
               padding: EdgeInsets.only(bottom: 8.h),
               child: Text(
                 '- ${recipe.ingredients[index]}',
-                style: CustomTypography.uRegular16,
+                style: CustomTypography.uRegular18,
               ),
             ),
           ),

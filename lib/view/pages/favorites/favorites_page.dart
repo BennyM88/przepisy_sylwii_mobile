@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
+import 'package:przepisy_sylwii_mobile/view/widgets/fav_recipes_grid.dart';
 
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({super.key});
@@ -15,6 +16,8 @@ class FavoritesPage extends StatelessWidget {
             children: [
               SizedBox(height: 48.h),
               const _TopBar(),
+              SizedBox(height: 48.h),
+              const FavRecipesGrid(),
             ],
           ),
         ),
