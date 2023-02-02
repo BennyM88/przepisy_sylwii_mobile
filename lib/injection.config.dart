@@ -9,6 +9,8 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:przepisy_sylwii_mobile/core/category_cubit/category_cubit.dart'
     as _i9;
+import 'package:przepisy_sylwii_mobile/core/delete_acc_cubit/delete_acc_cubit.dart'
+    as _i10;
 import 'package:przepisy_sylwii_mobile/core/login_cubit/login_cubit.dart'
     as _i5;
 import 'package:przepisy_sylwii_mobile/core/recipe_cubit/recipe_cubit.dart'
@@ -47,6 +49,10 @@ extension GetItInjectableX on _i1.GetIt {
       gh<_i6.RecipeCubit>(),
     ));
     gh.singleton<_i9.CategoryCubit>(_i9.CategoryCubit(gh<_i6.RecipeCubit>()));
+    gh.singleton<_i10.DeleteAccCubit>(_i10.DeleteAccCubit(
+      gh<_i3.FirebaseAuthRepository>(),
+      gh<_i8.UserCubit>(),
+    ));
     return this;
   }
 }

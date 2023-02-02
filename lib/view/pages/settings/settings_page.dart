@@ -1,11 +1,13 @@
 // ignore_for_file: discarded_futures
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/constants/url.dart';
+import 'package:przepisy_sylwii_mobile/core/delete_acc_cubit/delete_acc_cubit.dart';
 import 'package:przepisy_sylwii_mobile/core/user_cubit/user_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/view/dialogs/delete_acc_dialog.dart';
@@ -131,7 +133,10 @@ class _SettingsAccountBox extends StatelessWidget {
           SettingsRow(
             onTap: () async => showModalBottomSheet(
               context: context,
-              builder: (_) => const DeleteAccDialog(),
+              builder: (_) => BlocProvider(
+                create: (_) => getIt<DeleteAccCubit>(),
+                child: const DeleteAccDialog(),
+              ),
             ),
             content: 'Usuń konto',
             icon: Icons.delete_outlined,

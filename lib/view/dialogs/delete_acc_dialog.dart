@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
+import 'package:przepisy_sylwii_mobile/core/delete_acc_cubit/delete_acc_cubit.dart';
+import 'package:przepisy_sylwii_mobile/injection.dart';
+import 'package:przepisy_sylwii_mobile/view/utils/snackbar.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/custom_button.dart';
 
 class DeleteAccDialog extends StatelessWidget {
@@ -19,10 +23,24 @@ class DeleteAccDialog extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 24.h),
-          CustomButton(
-            content: 'Tak',
-            onPressed: () {},
-            isPink: true,
+          BlocConsumer<DeleteAccCubit, DeleteAccState>(
+            listener: (_, state) => state.whenOrNull(
+              error: (errorMessage) async =>
+                  displaySnackBar(errorMessage.toString()),
+              success: () async {
+                displaySnackBar('Konto zostało usunięte');
+                Navigator.popUntil(context, (route) => route.isFirst);
+                return null;
+              },
+            ),
+            builder: (_, state) => state.maybeWhen(
+              loading: () => CustomButton.loaderPink(),
+              orElse: () => CustomButton(
+                content: 'Tak',
+                onPressed: () async => getIt<DeleteAccCubit>().deleteAccount(),
+                isPink: true,
+              ),
+            ),
           ),
           SizedBox(height: 12.h),
           CustomButton(

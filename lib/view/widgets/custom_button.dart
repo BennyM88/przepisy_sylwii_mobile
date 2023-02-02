@@ -26,6 +26,22 @@ class CustomButton extends StatelessWidget {
     );
   }
 
+  factory CustomButton.loaderPink() {
+    return CustomButton(
+      content: '',
+      isPink: true,
+      suffix: SizedBox(
+        height: 18.sp,
+        width: 18.sp,
+        child: CircularProgressIndicator(
+          color: CustomColors.neutral00,
+          strokeWidth: 3.w,
+        ),
+      ),
+      onPressed: null,
+    );
+  }
+
   const CustomButton({
     required this.content,
     this.prefix,

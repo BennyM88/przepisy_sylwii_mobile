@@ -5,6 +5,7 @@ import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/models/recipe.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/recipe_details/recipe_details_preparation_page.dart';
+import 'package:przepisy_sylwii_mobile/view/widgets/ingredients_row.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/shimmer_box.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -111,54 +112,83 @@ class _Panel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(32.h),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            recipe.dishName,
-            style: CustomTypography.uBold28,
-          ),
-          SizedBox(height: 6.h),
-          Row(
-            children: [
-              Text(
-                '${recipe.time} min',
-                style: CustomTypography.uRegular14n40,
-              ),
-              SizedBox(width: 6.h),
-              Container(
-                color: CustomColors.neutral40,
-                height: 10.h,
-                width: 1.w,
-              ),
-              SizedBox(width: 6.h),
-              Text(
-                _getAmount(recipe.amount),
-                style: CustomTypography.uRegular14n40,
-              ),
-            ],
-          ),
-          SizedBox(height: 6.h),
-          const Divider(thickness: 1),
-          SizedBox(height: 6.h),
-          Text(
-            'Składniki',
-            style: CustomTypography.uRegular22,
-          ),
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const ClampingScrollPhysics(),
-            itemCount: recipe.ingredients.length,
-            itemBuilder: (_, index) => Padding(
-              padding: EdgeInsets.only(bottom: 8.h),
-              child: Text(
-                '- ${recipe.ingredients[index]}',
-                style: CustomTypography.uRegular18,
-              ),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              recipe.dishName,
+              style: CustomTypography.uBold28,
             ),
-          ),
-        ],
+            SizedBox(height: 6.h),
+            _PanelInfo(recipe),
+            SizedBox(height: 6.h),
+            const Divider(thickness: 1),
+            SizedBox(height: 12.h),
+            Text(
+              'Składniki',
+              style: CustomTypography.uRegular22,
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const ClampingScrollPhysics(),
+              itemCount: recipe.ingredients.length,
+              itemBuilder: (_, index) =>
+                  IngredientsRow(index: index, recipe: recipe),
+            ),
+            SizedBox(height: 50.h),
+          ],
+        ),
       ),
+    );
+  }
+}
+
+class _PanelInfo extends StatelessWidget {
+  final Recipe recipe;
+
+  const _PanelInfo(this.recipe);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Row(
+          children: [
+            Icon(
+              Icons.timer_outlined,
+              color: CustomColors.neutral40,
+              size: 16.sp,
+            ),
+            SizedBox(width: 3.w),
+            Text(
+              '${recipe.time} min',
+              style: CustomTypography.uRegular14n40,
+            ),
+          ],
+        ),
+        SizedBox(width: 6.w),
+        Container(
+          color: CustomColors.neutral40,
+          height: 10.h,
+          width: 1.w,
+        ),
+        SizedBox(width: 6.w),
+        Row(
+          children: [
+            Icon(
+              Icons.people_alt_outlined,
+              color: CustomColors.neutral40,
+              size: 16.sp,
+            ),
+            SizedBox(width: 3.w),
+            Text(
+              _getAmount(recipe.amount),
+              style: CustomTypography.uRegular14n40,
+            ),
+          ],
+        ),
+      ],
     );
   }
 

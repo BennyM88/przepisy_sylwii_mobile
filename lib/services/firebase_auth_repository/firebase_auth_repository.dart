@@ -69,6 +69,11 @@ class FirebaseAuthRepository {
 
   Future<void> signOut() async => await _auth.signOut();
 
+  Future<void> deleteAcc() async {
+    await CustomFirestorePaths.usersPath.doc(_auth.currentUser!.email).delete();
+    await _auth.currentUser!.delete();
+  }
+
   Future<UserProfile> getUserDetails() async {
     DocumentSnapshot data = await CustomFirestorePaths.usersPath
         .doc(_auth.currentUser?.email)
@@ -79,5 +84,11 @@ class FirebaseAuthRepository {
       firstName: data['firstName'],
       uid: data['uid'],
     );
+  }
+
+  Future<void> reauthenticateWithCredential({
+    required AuthCredential credential,
+  }) async {
+    await _auth.currentUser!.reauthenticateWithCredential(credential);
   }
 }
