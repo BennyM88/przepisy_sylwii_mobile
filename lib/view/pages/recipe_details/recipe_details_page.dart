@@ -112,33 +112,34 @@ class _Panel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(32.h),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              recipe.dishName,
-              style: CustomTypography.uBold28,
-            ),
-            SizedBox(height: 6.h),
-            _PanelInfo(recipe),
-            SizedBox(height: 6.h),
-            const Divider(thickness: 1),
-            SizedBox(height: 12.h),
-            Text(
-              'Składniki',
-              style: CustomTypography.uRegular22,
-            ),
-            ListView.builder(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            recipe.dishName,
+            style: CustomTypography.uBold28,
+          ),
+          SizedBox(height: 6.h),
+          _PanelInfo(recipe),
+          SizedBox(height: 6.h),
+          const Divider(thickness: 1),
+          SizedBox(height: 12.h),
+          Text(
+            'Składniki',
+            style: CustomTypography.uRegular22,
+          ),
+          SizedBox(
+            height: 0.45.sh,
+            child: ListView.builder(
               shrinkWrap: true,
+              padding: EdgeInsets.only(top: 12.h),
               physics: const ClampingScrollPhysics(),
               itemCount: recipe.ingredients.length,
               itemBuilder: (_, index) =>
                   IngredientsRow(index: index, recipe: recipe),
             ),
-            SizedBox(height: 50.h),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -6,6 +6,7 @@ import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/core/login_cubit/login_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
+import 'package:przepisy_sylwii_mobile/view/pages/forgot_pswd/forgot_pswd_page.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/register/register_page.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/custom_button.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/custom_text_field.dart';
@@ -100,9 +101,17 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 24.h),
                 const _BottomInfo(),
                 SizedBox(height: 16.h),
-                Text(
-                  'Zapomniałeś hasła?',
-                  style: CustomTypography.uBold14,
+                GestureDetector(
+                  onTap: () async => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ForgotPswdPage(),
+                    ),
+                  ),
+                  child: Text(
+                    'Zapomniałeś hasła?',
+                    style: CustomTypography.uBold14,
+                  ),
                 ),
               ],
             ),
