@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
+import 'package:przepisy_sylwii_mobile/core/forgot_pswd_cubit/forgot_pswd_cubit.dart';
 import 'package:przepisy_sylwii_mobile/core/login_cubit/login_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/forgot_pswd/forgot_pswd_page.dart';
@@ -105,7 +106,10 @@ class _LoginPageState extends State<LoginPage> {
                   onTap: () async => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const ForgotPswdPage(),
+                      builder: (_) => BlocProvider(
+                        create: (_) => getIt<ForgotPswdCubit>(),
+                        child: const ForgotPswdPage(),
+                      ),
                     ),
                   ),
                   child: Text(

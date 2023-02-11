@@ -91,4 +91,8 @@ class FirebaseAuthRepository {
   }) async {
     await _auth.currentUser!.reauthenticateWithCredential(credential);
   }
+
+  Future<void> resetPassword({required String email}) async {
+    await _auth.sendPasswordResetEmail(email: email);
+  }
 }
