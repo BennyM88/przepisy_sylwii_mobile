@@ -1,54 +1,64 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/core/recipe_cubit/recipe_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
+import 'package:przepisy_sylwii_mobile/view/widgets/shimmer_box.dart';
 
 class FavRecipesGrid extends StatelessWidget {
   const FavRecipesGrid({super.key});
-  //TODO refactor/change design
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: GridView.builder(
+      child: ListView.builder(
         itemCount: getIt<RecipeCubit>().state.allRecipes.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 0.6.sw / 0.4.sh,
-        ),
-        itemBuilder: (context, index) {
+        shrinkWrap: true,
+        physics: const ClampingScrollPhysics(),
+        itemBuilder: (_, index) {
           return Padding(
-            padding: EdgeInsets.all(12.sp),
-            child: Container(
-              height: 700.h,
-              padding: EdgeInsets.all(10.sp),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(12.r)),
-                boxShadow: [
-                  BoxShadow(
-                    color: CustomColors.neutral80,
-                    offset: const Offset(1, 1),
-                    blurRadius: 5.r,
-                    spreadRadius: 0.2.r,
-                  ),
-                ],
-              ),
+            padding: EdgeInsets.symmetric(vertical: 8.h),
+            child: SizedBox(
+              height: 300.h,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(12.r)),
-                    child: Image.network(
-                      getIt<RecipeCubit>().state.allRecipes[index].url,
+                  SizedBox(
+                    height: 240.h,
+                    width: double.infinity,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(16.r)),
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            getIt<RecipeCubit>().state.allRecipes[index].url,
+                        fit: BoxFit.cover,
+                        filterQuality: FilterQuality.high,
+                        placeholder: (_, __) => const ShimmerBox(
+                          height: 240,
+                          width: double.infinity,
+                          radius: 16,
+                        ),
+                        errorWidget: (_, __, ___) => const Icon(Icons.error),
+                      ),
                     ),
                   ),
-                  SizedBox(height: 8.h),
-                  Text(
-                    getIt<RecipeCubit>().state.allRecipes[index].dishName,
-                    style: CustomTypography.uRegular14,
-                    overflow: TextOverflow.ellipsis,
+                  SizedBox(height: 10.h),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 6.w),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          getIt<RecipeCubit>().state.allRecipes[index].dishName,
+                          style: CustomTypography.uRegular16,
+                        ),
+                        Text(
+                          '${getIt<RecipeCubit>().state.allRecipes[index].time} min',
+                          style: CustomTypography.uRegular14n70,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
