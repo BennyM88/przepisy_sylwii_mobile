@@ -16,7 +16,7 @@ class FavoritesPage extends StatelessWidget {
             children: [
               SizedBox(height: 48.h),
               const _TopBar(),
-              SizedBox(height: 48.h),
+              SizedBox(height: 32.h),
               const FavRecipesGrid(),
             ],
           ),

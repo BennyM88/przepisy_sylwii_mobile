@@ -32,6 +32,14 @@ class HomePage extends StatelessWidget {
             const CategoryList(),
             SizedBox(height: 16.h),
             const RecipesList(),
+            SizedBox(height: 16.h),
+            Padding(
+              padding: EdgeInsets.only(left: 24.w),
+              child: Text(
+                'Najlepszy w tym tygodniu 🔥',
+                style: CustomTypography.uRegular22,
+              ),
+            ),
           ],
         ),
       ),
@@ -50,7 +58,7 @@ class _TopBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Cześć,',
+            'Cześć 👋',
             style: CustomTypography.uRegular18,
           ),
           Row(

@@ -20,12 +20,12 @@ class FavRecipesGrid extends StatelessWidget {
           return Padding(
             padding: EdgeInsets.symmetric(vertical: 8.h),
             child: SizedBox(
-              height: 300.h,
+              height: 260.h,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 240.h,
+                    height: 200.h,
                     width: double.infinity,
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(16.r)),
@@ -49,9 +49,15 @@ class FavRecipesGrid extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          getIt<RecipeCubit>().state.allRecipes[index].dishName,
-                          style: CustomTypography.uRegular16,
+                        Flexible(
+                          child: Text(
+                            getIt<RecipeCubit>()
+                                .state
+                                .allRecipes[index]
+                                .dishName,
+                            overflow: TextOverflow.ellipsis,
+                            style: CustomTypography.uRegular16,
+                          ),
                         ),
                         Text(
                           '${getIt<RecipeCubit>().state.allRecipes[index].time} min',
