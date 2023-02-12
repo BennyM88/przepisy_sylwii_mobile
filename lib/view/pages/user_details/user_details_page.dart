@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
+import 'package:przepisy_sylwii_mobile/core/change_pswd_cubit/change_pswd_cubit.dart';
 import 'package:przepisy_sylwii_mobile/core/user_cubit/user_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/models/user_profile.dart';
@@ -70,11 +72,14 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                       showModalBottomSheet(
                         context: context,
                         isScrollControlled: true,
-                        builder: (_) => Padding(
-                          padding: EdgeInsets.only(
-                            bottom: MediaQuery.of(context).viewInsets.bottom,
+                        builder: (_) => BlocProvider(
+                          create: (_) => getIt<ChangePswdCubit>(),
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).viewInsets.bottom,
+                            ),
+                            child: ChangePswdDialog(email: userProfile!.email),
                           ),
-                          child: const ChangePswdDialog(),
                         ),
                       );
                     }

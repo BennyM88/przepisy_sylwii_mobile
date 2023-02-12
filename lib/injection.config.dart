@@ -9,8 +9,10 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:przepisy_sylwii_mobile/core/category_cubit/category_cubit.dart'
     as _i10;
-import 'package:przepisy_sylwii_mobile/core/delete_acc_cubit/delete_acc_cubit.dart'
+import 'package:przepisy_sylwii_mobile/core/change_pswd_cubit/change_pswd_cubit.dart'
     as _i11;
+import 'package:przepisy_sylwii_mobile/core/delete_acc_cubit/delete_acc_cubit.dart'
+    as _i12;
 import 'package:przepisy_sylwii_mobile/core/forgot_pswd_cubit/forgot_pswd_cubit.dart'
     as _i5;
 import 'package:przepisy_sylwii_mobile/core/login_cubit/login_cubit.dart'
@@ -53,7 +55,9 @@ extension GetItInjectableX on _i1.GetIt {
       gh<_i7.RecipeCubit>(),
     ));
     gh.singleton<_i10.CategoryCubit>(_i10.CategoryCubit(gh<_i7.RecipeCubit>()));
-    gh.singleton<_i11.DeleteAccCubit>(_i11.DeleteAccCubit(
+    gh.singleton<_i11.ChangePswdCubit>(
+        _i11.ChangePswdCubit(gh<_i3.FirebaseAuthRepository>()));
+    gh.singleton<_i12.DeleteAccCubit>(_i12.DeleteAccCubit(
       gh<_i3.FirebaseAuthRepository>(),
       gh<_i9.UserCubit>(),
     ));
