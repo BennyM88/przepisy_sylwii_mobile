@@ -32,7 +32,7 @@ class RecipesList extends StatelessWidget {
                 onTap: () async => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
+                    builder: (_) =>
                         RecipeDetailsPage(recipe: state.allRecipes[index]),
                   ),
                 ),
