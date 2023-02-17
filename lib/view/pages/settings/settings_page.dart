@@ -132,6 +132,8 @@ class _SettingsAccountBox extends StatelessWidget {
           ),
           SettingsRow(
             onTap: () async => showModalBottomSheet(
+              isDismissible: false,
+              enableDrag: false,
               context: context,
               builder: (_) => BlocProvider(
                 create: (_) => getIt<DeleteAccCubit>(),

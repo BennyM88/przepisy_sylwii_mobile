@@ -43,9 +43,14 @@ class DeleteAccDialog extends StatelessWidget {
             ),
           ),
           SizedBox(height: 12.h),
-          CustomButton(
-            content: 'Nie',
-            onPressed: () => Navigator.pop(context),
+          BlocBuilder<DeleteAccCubit, DeleteAccState>(
+            builder: (_, state) => state.maybeWhen(
+              loading: () => CustomButton.loader(),
+              orElse: () => CustomButton(
+                content: 'Nie',
+                onPressed: () => Navigator.pop(context),
+              ),
+            ),
           ),
         ],
       ),

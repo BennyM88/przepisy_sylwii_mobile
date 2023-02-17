@@ -70,18 +70,22 @@ class FirebaseAuthRepository {
   Future<void> signOut() async => await _auth.signOut();
 
   Future<void> deleteAcc() async {
-    // await CustomFirestorePaths.usersPath
-    //     .doc(_auth.currentUser!.email)
-    //     .collection('favorites')
-    //     .snapshots()
-    //     .forEach((querySnapshot) {
-    //   for (QueryDocumentSnapshot docSnapshot in querySnapshot.docs) {
-    //     docSnapshot.reference.delete();
-    //   }
-    // });
+    await deleteFavCollection();
 
     await CustomFirestorePaths.usersPath.doc(_auth.currentUser!.email).delete();
     await _auth.currentUser!.delete();
+  }
+
+  Future<void> deleteFavCollection() async {
+    CustomFirestorePaths.usersPath
+        .doc(_auth.currentUser!.email)
+        .collection('favorites')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      for (var doc in querySnapshot.docs) {
+        doc.reference.delete();
+      }
+    });
   }
 
   Future<UserProfile> getUserDetails() async {
