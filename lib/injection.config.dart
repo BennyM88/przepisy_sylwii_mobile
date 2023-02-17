@@ -8,11 +8,13 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:przepisy_sylwii_mobile/core/category_cubit/category_cubit.dart'
-    as _i10;
+    as _i9;
 import 'package:przepisy_sylwii_mobile/core/change_pswd_cubit/change_pswd_cubit.dart'
-    as _i11;
+    as _i10;
 import 'package:przepisy_sylwii_mobile/core/delete_acc_cubit/delete_acc_cubit.dart'
-    as _i12;
+    as _i13;
+import 'package:przepisy_sylwii_mobile/core/favorites_cubit/favorites_cubit.dart'
+    as _i11;
 import 'package:przepisy_sylwii_mobile/core/forgot_pswd_cubit/forgot_pswd_cubit.dart'
     as _i5;
 import 'package:przepisy_sylwii_mobile/core/login_cubit/login_cubit.dart'
@@ -21,7 +23,7 @@ import 'package:przepisy_sylwii_mobile/core/recipe_cubit/recipe_cubit.dart'
     as _i7;
 import 'package:przepisy_sylwii_mobile/core/register_cubit/register_cubit.dart'
     as _i8;
-import 'package:przepisy_sylwii_mobile/core/user_cubit/user_cubit.dart' as _i9;
+import 'package:przepisy_sylwii_mobile/core/user_cubit/user_cubit.dart' as _i12;
 import 'package:przepisy_sylwii_mobile/services/firebase_auth_repository/firebase_auth_repository.dart'
     as _i3;
 import 'package:przepisy_sylwii_mobile/services/firebase_repository/firebase_repository.dart'
@@ -50,16 +52,21 @@ extension GetItInjectableX on _i1.GetIt {
         _i7.RecipeCubit(gh<_i4.FirebaseRepository>()));
     gh.singleton<_i8.RegisterCubit>(
         _i8.RegisterCubit(gh<_i3.FirebaseAuthRepository>()));
-    gh.singleton<_i9.UserCubit>(_i9.UserCubit(
+    gh.singleton<_i9.CategoryCubit>(_i9.CategoryCubit(gh<_i7.RecipeCubit>()));
+    gh.singleton<_i10.ChangePswdCubit>(
+        _i10.ChangePswdCubit(gh<_i3.FirebaseAuthRepository>()));
+    gh.singleton<_i11.FavoritesCubit>(_i11.FavoritesCubit(
+      gh<_i4.FirebaseRepository>(),
+      gh<_i3.FirebaseAuthRepository>(),
+    ));
+    gh.singleton<_i12.UserCubit>(_i12.UserCubit(
       gh<_i3.FirebaseAuthRepository>(),
       gh<_i7.RecipeCubit>(),
+      gh<_i11.FavoritesCubit>(),
     ));
-    gh.singleton<_i10.CategoryCubit>(_i10.CategoryCubit(gh<_i7.RecipeCubit>()));
-    gh.singleton<_i11.ChangePswdCubit>(
-        _i11.ChangePswdCubit(gh<_i3.FirebaseAuthRepository>()));
-    gh.singleton<_i12.DeleteAccCubit>(_i12.DeleteAccCubit(
+    gh.singleton<_i13.DeleteAccCubit>(_i13.DeleteAccCubit(
       gh<_i3.FirebaseAuthRepository>(),
-      gh<_i9.UserCubit>(),
+      gh<_i12.UserCubit>(),
     ));
     return this;
   }

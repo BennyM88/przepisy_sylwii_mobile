@@ -1,8 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
+import 'package:przepisy_sylwii_mobile/core/favorites_cubit/favorites_cubit.dart';
+import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/models/recipe.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/recipe_details/recipe_details_preparation_page.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/ingredients_row.dart';
@@ -90,11 +93,16 @@ class _Body extends StatelessWidget {
           top: 70.h,
           right: 25.w,
           child: InkWell(
-            onTap: () {},
-            child: Icon(
-              Icons.favorite,
-              color: CustomColors.neutral100,
-              size: 30.sp,
+            onTap: () async =>
+                getIt<FavoritesCubit>().addOrRemoveFavorites(recipe),
+            child: BlocBuilder<FavoritesCubit, FavoritesState>(
+              builder: (_, state) => Icon(
+                state.favoritesRecipes.contains(recipe)
+                    ? Icons.favorite
+                    : Icons.favorite_outline,
+                color: CustomColors.neutral100,
+                size: 30.sp,
+              ),
             ),
           ),
         ),

@@ -2,18 +2,18 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
-import 'package:przepisy_sylwii_mobile/core/recipe_cubit/recipe_cubit.dart';
+import 'package:przepisy_sylwii_mobile/core/favorites_cubit/favorites_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/shimmer_box.dart';
 
-class FavRecipesGrid extends StatelessWidget {
-  const FavRecipesGrid({super.key});
+class FavRecipesList extends StatelessWidget {
+  const FavRecipesList({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-        itemCount: getIt<RecipeCubit>().state.allRecipes.length,
+        itemCount: getIt<FavoritesCubit>().state.favoritesRecipes.length,
         shrinkWrap: true,
         physics: const ClampingScrollPhysics(),
         itemBuilder: (_, index) {
@@ -30,8 +30,10 @@ class FavRecipesGrid extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(16.r)),
                       child: CachedNetworkImage(
-                        imageUrl:
-                            getIt<RecipeCubit>().state.allRecipes[index].url,
+                        imageUrl: getIt<FavoritesCubit>()
+                            .state
+                            .favoritesRecipes[index]
+                            .url,
                         fit: BoxFit.cover,
                         filterQuality: FilterQuality.high,
                         placeholder: (_, __) => const ShimmerBox(
@@ -51,16 +53,16 @@ class FavRecipesGrid extends StatelessWidget {
                       children: [
                         Flexible(
                           child: Text(
-                            getIt<RecipeCubit>()
+                            getIt<FavoritesCubit>()
                                 .state
-                                .allRecipes[index]
+                                .favoritesRecipes[index]
                                 .dishName,
                             overflow: TextOverflow.ellipsis,
                             style: CustomTypography.uRegular16,
                           ),
                         ),
                         Text(
-                          '${getIt<RecipeCubit>().state.allRecipes[index].time} min',
+                          '${getIt<FavoritesCubit>().state.favoritesRecipes[index].time} min',
                           style: CustomTypography.uRegular14n70,
                         ),
                       ],

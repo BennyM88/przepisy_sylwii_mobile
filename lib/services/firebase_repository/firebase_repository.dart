@@ -17,4 +17,33 @@ class FirebaseRepository {
 
     return allRecipes;
   }
+
+  Future<List<Recipe>> getAllFavoritesRecipes(String? user) async {
+    QuerySnapshot favoritesRecipesSnapshot = await CustomFirestorePaths
+        .usersPath
+        .doc(user)
+        .collection('favorites')
+        .get();
+    List<Recipe> allFavoritesRecipes = favoritesRecipesSnapshot.docs
+        .map((doc) => Recipe.fromJson(doc.data() as Map<String, dynamic>))
+        .toList();
+
+    return allFavoritesRecipes;
+  }
+
+  Future<void> addToFavorites(Recipe recipe, String? user) async {
+    await CustomFirestorePaths.usersPath
+        .doc(user)
+        .collection('favorites')
+        .doc(recipe.dishName)
+        .set(recipe.toJson());
+  }
+
+  Future<void> removeFromFavorites(Recipe recipe, String? user) async {
+    await CustomFirestorePaths.usersPath
+        .doc(user)
+        .collection('favorites')
+        .doc(recipe.dishName)
+        .delete();
+  }
 }
