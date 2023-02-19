@@ -4,7 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/core/favorites_cubit/favorites_cubit.dart';
+import 'package:przepisy_sylwii_mobile/view/dialogs/delete_fav_recipe_dialog.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/recipe_details/recipe_details_page.dart';
+import 'package:przepisy_sylwii_mobile/view/widgets/fav_recipes_empty.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/shimmer_box.dart';
 
 class FavRecipesList extends StatelessWidget {
@@ -15,13 +17,15 @@ class FavRecipesList extends StatelessWidget {
     return Expanded(
       child: BlocBuilder<FavoritesCubit, FavoritesState>(
         builder: (_, state) {
-          return ListView.builder(
-            itemCount: state.favoritesRecipes.length,
-            shrinkWrap: true,
-            physics: const ClampingScrollPhysics(),
-            itemBuilder: (_, index) =>
-                _FavRecipeItem(index: index, state: state),
-          );
+          return state.favoritesRecipes.isEmpty
+              ? const FavRecipesEmpty()
+              : ListView.builder(
+                  itemCount: state.favoritesRecipes.length,
+                  shrinkWrap: true,
+                  physics: const ClampingScrollPhysics(),
+                  itemBuilder: (_, index) =>
+                      _FavRecipeItem(index: index, state: state),
+                );
         },
       ),
     );
@@ -37,6 +41,12 @@ class _FavRecipeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onLongPress: () async => showModalBottomSheet(
+        context: context,
+        builder: (_) => DeleteFavRecipeDialog(
+          recipe: state.favoritesRecipes[index],
+        ),
+      ),
       onTap: () async => Navigator.push(
         context,
         MaterialPageRoute(

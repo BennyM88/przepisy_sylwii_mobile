@@ -60,6 +60,13 @@ class CustomTypography {
     color: CustomColors.neutral00,
   );
 
+  static TextStyle uBold16 = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: bold,
+    fontFamily: ubuntuFontBold,
+    color: CustomColors.neutral00,
+  );
+
   static TextStyle uRegular22 = TextStyle(
     fontSize: 22.sp,
     fontWeight: regular,
