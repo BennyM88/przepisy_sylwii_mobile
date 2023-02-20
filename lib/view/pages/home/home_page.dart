@@ -4,9 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/core/user_cubit/user_cubit.dart';
+import 'package:przepisy_sylwii_mobile/view/pages/create_recipe/create_recipe_page.dart';
+import 'package:przepisy_sylwii_mobile/view/pages/home/widgets/category_list.dart';
+import 'package:przepisy_sylwii_mobile/view/pages/home/widgets/recipes_list.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/settings/settings_page.dart';
-import 'package:przepisy_sylwii_mobile/view/widgets/category_list.dart';
-import 'package:przepisy_sylwii_mobile/view/widgets/recipes_list.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -14,6 +15,17 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const CreateRecipePage(),
+          ),
+        ),
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+        child: Icon(Icons.add),
+      ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

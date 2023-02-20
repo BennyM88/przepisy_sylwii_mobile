@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/core/favorites_cubit/favorites_cubit.dart';
 import 'package:przepisy_sylwii_mobile/view/dialogs/delete_fav_recipe_dialog.dart';
+import 'package:przepisy_sylwii_mobile/view/pages/favorites/widgets/fav_recipes_empty.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/recipe_details/recipe_details_page.dart';
-import 'package:przepisy_sylwii_mobile/view/widgets/fav_recipes_empty.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/shimmer_box.dart';
 
 class FavRecipesList extends StatelessWidget {

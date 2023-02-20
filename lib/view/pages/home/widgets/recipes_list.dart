@@ -6,8 +6,8 @@ import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/core/recipe_cubit/recipe_cubit.dart';
 import 'package:przepisy_sylwii_mobile/models/recipe.dart';
+import 'package:przepisy_sylwii_mobile/view/pages/home/widgets/recipes_list_shimmer.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/recipe_details/recipe_details_page.dart';
-import 'package:przepisy_sylwii_mobile/view/widgets/recipes_list_shimmer.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/shimmer_box.dart';
 
 class RecipesList extends StatelessWidget {

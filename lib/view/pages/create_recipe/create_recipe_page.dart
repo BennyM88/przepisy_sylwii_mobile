@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
-import 'package:przepisy_sylwii_mobile/view/pages/favorites/widgets/fav_recipes_list.dart';
+import 'package:przepisy_sylwii_mobile/view/pages/create_recipe/widgets/add_photo_section.dart';
 
-class FavoritesPage extends StatelessWidget {
-  const FavoritesPage({super.key});
+class CreateRecipePage extends StatelessWidget {
+  const CreateRecipePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +13,12 @@ class FavoritesPage extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 48.h),
               const _TopBar(),
-              SizedBox(height: 32.h),
-              const FavRecipesList(),
+              SizedBox(height: 48.h),
+              const AddPhotoSection(),
             ],
           ),
         ),
@@ -32,7 +33,6 @@ class _TopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         InkWell(
           onTap: () => Navigator.pop(context),
@@ -41,14 +41,13 @@ class _TopBar extends StatelessWidget {
             size: 26.sp,
           ),
         ),
-        Text('Ulubione dania', style: CustomTypography.uRegular18),
-        InkWell(
-          onTap: () => Navigator.of(context).popUntil((route) => route.isFirst),
-          child: Icon(
-            Icons.clear,
-            size: 28.sp,
-          ),
+        const Spacer(),
+        Text(
+          'Stwórz przepis',
+          style: CustomTypography.uRegular22,
         ),
+        const Spacer(),
+        SizedBox(width: 26.sp),
       ],
     );
   }
