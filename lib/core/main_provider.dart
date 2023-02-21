@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:przepisy_sylwii_mobile/core/add_photo_cubit/add_photo_cubit.dart';
 import 'package:przepisy_sylwii_mobile/core/category_cubit/category_cubit.dart';
 import 'package:przepisy_sylwii_mobile/core/favorites_cubit/favorites_cubit.dart';
 import 'package:przepisy_sylwii_mobile/core/login_cubit/login_cubit.dart';
@@ -23,6 +24,7 @@ class MainProvider extends StatelessWidget {
         BlocProvider(create: (_) => getIt<RegisterCubit>()),
         BlocProvider(create: (_) => getIt<UserCubit>()),
         BlocProvider(create: (_) => getIt<FavoritesCubit>()),
+        BlocProvider(create: (_) => getIt<AddPhotoCubit>()),
       ],
       child: child,
     );

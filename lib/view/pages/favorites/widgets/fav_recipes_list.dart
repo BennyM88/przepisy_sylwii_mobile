@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,7 +6,7 @@ import 'package:przepisy_sylwii_mobile/core/favorites_cubit/favorites_cubit.dart
 import 'package:przepisy_sylwii_mobile/view/dialogs/delete_fav_recipe_dialog.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/favorites/widgets/fav_recipes_empty.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/recipe_details/recipe_details_page.dart';
-import 'package:przepisy_sylwii_mobile/view/widgets/shimmer_box.dart';
+import 'package:przepisy_sylwii_mobile/view/widgets/cached_image.dart';
 
 class FavRecipesList extends StatelessWidget {
   const FavRecipesList({super.key});
@@ -65,19 +64,10 @@ class _FavRecipeItem extends StatelessWidget {
               SizedBox(
                 height: 200.h,
                 width: double.infinity,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(16.r)),
-                  child: CachedNetworkImage(
-                    imageUrl: state.favoritesRecipes[index].url,
-                    fit: BoxFit.cover,
-                    filterQuality: FilterQuality.high,
-                    placeholder: (_, __) => const ShimmerBox(
-                      height: 240,
-                      width: double.infinity,
-                      radius: 16,
-                    ),
-                    errorWidget: (_, __, ___) => const Icon(Icons.error),
-                  ),
+                child: CachedImage(
+                  url: state.favoritesRecipes[index].url,
+                  height: 240,
+                  width: double.infinity,
                 ),
               ),
               SizedBox(height: 10.h),
