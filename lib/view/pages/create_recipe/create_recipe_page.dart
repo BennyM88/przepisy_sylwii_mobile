@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
+import 'package:przepisy_sylwii_mobile/view/pages/create_recipe/widgets/add_ingredients_section.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/create_recipe/widgets/add_photo_section.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/create_recipe/widgets/amount_section.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/create_recipe/widgets/create_recipe_text_field_section.dart';
@@ -71,6 +72,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                     }
                   },
                 ),
+                const AddIngredientsSection(),
                 SizedBox(height: 48.h),
                 CustomButton(content: 'Dodaj', onPressed: () {}, isPink: true),
               ],

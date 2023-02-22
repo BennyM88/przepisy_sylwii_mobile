@@ -7,6 +7,7 @@ class CreateRecipeTextFieldSection extends StatefulWidget {
   final TextEditingController textEditingController;
   final String title;
   final String? suffixText;
+  final IconButton? suffixIcon;
   final bool isNumeric;
 
   const CreateRecipeTextFieldSection({
@@ -14,6 +15,7 @@ class CreateRecipeTextFieldSection extends StatefulWidget {
     required this.textEditingController,
     required this.title,
     this.suffixText,
+    this.suffixIcon,
     this.isNumeric = false,
   }) : super(key: key);
 
@@ -46,6 +48,7 @@ class _CreateRecipeTextFieldSectionState
             fillColor: CustomColors.neutral95,
             isDense: true,
             suffixText: widget.suffixText,
+            suffixIcon: widget.suffixIcon,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(16.r)),
               borderSide: const BorderSide(
