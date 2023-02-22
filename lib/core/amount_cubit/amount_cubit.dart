@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 
 @singleton
 class AmountCubit extends Cubit<int> {
-  AmountCubit() : super(0);
+  AmountCubit() : super(1);
 
   void increment() {
     if (state > 7) return;
@@ -12,7 +12,7 @@ class AmountCubit extends Cubit<int> {
   }
 
   void decrement() {
-    if (state < 1) return;
+    if (state < 2) return;
 
     emit(state - 1);
   }

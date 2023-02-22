@@ -23,7 +23,7 @@ class AddPhotoSection extends StatelessWidget {
         height: 200.h,
         width: double.infinity,
         decoration: BoxDecoration(
-          border: Border.all(),
+          border: const Border.fromBorderSide(BorderSide()),
           borderRadius: BorderRadius.all(Radius.circular(16.r)),
         ),
         child: BlocConsumer<AddPhotoCubit, AddPhotoState>(

@@ -145,7 +145,7 @@ class _GoogleButton extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(10.h),
         decoration: BoxDecoration(
-          border: Border.all(),
+          border: const Border.fromBorderSide(BorderSide()),
           borderRadius: BorderRadius.all(Radius.circular(16.r)),
         ),
         child: Row(
