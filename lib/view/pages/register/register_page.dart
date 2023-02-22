@@ -6,6 +6,7 @@ import 'package:przepisy_sylwii_mobile/core/register_cubit/register_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/custom_button.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/custom_text_field.dart';
+import 'package:przepisy_sylwii_mobile/view/widgets/top_bar.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -30,7 +31,7 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
               children: [
                 SizedBox(height: 48.h),
-                const _TopBar(),
+                const TopBar(content: 'Rejestracja'),
                 SizedBox(height: 48.h),
                 BlocConsumer<RegisterCubit, RegisterState>(
                   listener: (_, state) => state.whenOrNull(
@@ -173,32 +174,6 @@ class _RegisterPageState extends State<RegisterPage> {
     pswdController.dispose();
     rePswdController.dispose();
     super.dispose();
-  }
-}
-
-class _TopBar extends StatelessWidget {
-  const _TopBar();
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        InkWell(
-          onTap: () => Navigator.pop(context),
-          child: Icon(
-            Icons.arrow_back_ios_new,
-            size: 26.sp,
-          ),
-        ),
-        const Spacer(),
-        Text(
-          'Rejestracja',
-          style: CustomTypography.uRegular22,
-        ),
-        const Spacer(),
-        SizedBox(width: 26.sp),
-      ],
-    );
   }
 }
 

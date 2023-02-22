@@ -16,6 +16,7 @@ import 'package:przepisy_sylwii_mobile/view/pages/user_details/user_details_page
 import 'package:przepisy_sylwii_mobile/view/utils/launch_url.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/custom_button.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/settings_row.dart';
+import 'package:przepisy_sylwii_mobile/view/widgets/top_bar.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -30,7 +31,7 @@ class SettingsPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 48.h),
-              const _TopBar(),
+              const TopBar(content: 'Ustawienia'),
               SizedBox(height: 48.h),
               Text('Konto', style: CustomTypography.uRegular18),
               SizedBox(height: 12.h),
@@ -67,32 +68,6 @@ class SettingsPage extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _TopBar extends StatelessWidget {
-  const _TopBar();
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        InkWell(
-          onTap: () => Navigator.pop(context),
-          child: Icon(
-            Icons.arrow_back_ios_new,
-            size: 26.sp,
-          ),
-        ),
-        const Spacer(),
-        Text(
-          'Ustawienia',
-          style: CustomTypography.uRegular22,
-        ),
-        const Spacer(),
-        SizedBox(width: 26.sp),
-      ],
     );
   }
 }

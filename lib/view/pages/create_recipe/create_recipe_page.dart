@@ -6,6 +6,7 @@ import 'package:przepisy_sylwii_mobile/view/pages/create_recipe/widgets/amount_s
 import 'package:przepisy_sylwii_mobile/view/pages/create_recipe/widgets/create_recipe_text_field_section.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/create_recipe/widgets/pick_category_section.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/custom_button.dart';
+import 'package:przepisy_sylwii_mobile/view/widgets/top_bar.dart';
 
 class CreateRecipePage extends StatefulWidget {
   const CreateRecipePage({super.key});
@@ -31,7 +32,7 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 48.h),
-                const _TopBar(),
+                const TopBar(content: 'Stwórz przepis'),
                 SizedBox(height: 48.h),
                 const AddPhotoSection(),
                 CreateRecipeTextFieldSection(
@@ -86,31 +87,5 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
     descController.dispose();
     timeController.dispose();
     super.dispose();
-  }
-}
-
-class _TopBar extends StatelessWidget {
-  const _TopBar();
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        InkWell(
-          onTap: () => Navigator.pop(context),
-          child: Icon(
-            Icons.arrow_back_ios_new,
-            size: 26.sp,
-          ),
-        ),
-        const Spacer(),
-        Text(
-          'Stwórz przepis',
-          style: CustomTypography.uRegular22,
-        ),
-        const Spacer(),
-        SizedBox(width: 26.sp),
-      ],
-    );
   }
 }
