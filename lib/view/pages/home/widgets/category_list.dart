@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/category_list.dart';
-import 'package:przepisy_sylwii_mobile/constants/colors.dart';
-import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/core/category_cubit/category_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
+import 'package:przepisy_sylwii_mobile/view/pages/home/widgets/category_box.dart';
 
 class CategoryList extends StatefulWidget {
   const CategoryList({super.key});
@@ -41,35 +40,13 @@ class _CategoryListState extends State<CategoryList> {
                   }
                   getIt<CategoryCubit>().setValues(category: _category);
                 },
-                child: _buildCategoryBox(categoryList[index], state),
+                child: CategoryBox(
+                  categoryName: categoryList[index],
+                  state: state,
+                ),
               ),
             );
           },
-        ),
-      ),
-    );
-  }
-
-  Widget _buildCategoryBox(String categoryName, CategoryState state) {
-    return Padding(
-      padding: EdgeInsets.only(right: 8.w),
-      child: Container(
-        decoration: BoxDecoration(
-          color: state.category.contains(categoryName)
-              ? CustomColors.neutral00
-              : CustomColors.neutral95.withOpacity(0.5),
-          borderRadius: BorderRadius.all(Radius.circular(12.r)),
-        ),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 22.w),
-          child: Center(
-            child: Text(
-              categoryName,
-              style: state.category.contains(categoryName)
-                  ? CustomTypography.uRegular14white
-                  : CustomTypography.uRegular14,
-            ),
-          ),
         ),
       ),
     );

@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:przepisy_sylwii_mobile/constants/colors.dart';
-import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/core/recipe_cubit/recipe_cubit.dart';
-import 'package:przepisy_sylwii_mobile/models/recipe.dart';
+import 'package:przepisy_sylwii_mobile/view/pages/home/widgets/recipe_box.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/home/widgets/recipes_list_shimmer.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/recipe_details/recipe_details_page.dart';
-import 'package:przepisy_sylwii_mobile/view/widgets/cached_image.dart';
 
 class RecipesList extends StatelessWidget {
   const RecipesList({super.key});
@@ -35,81 +32,11 @@ class RecipesList extends StatelessWidget {
                         RecipeDetailsPage(recipe: state.allRecipes[index]),
                   ),
                 ),
-                child: _buildRecipeBox(state.allRecipes[index]),
+                child: RecipeBox(recipe: state.allRecipes[index]),
               ),
             );
           },
         ),
-      ),
-    );
-  }
-
-  Widget _buildRecipeBox(Recipe recipe) {
-    return Padding(
-      padding: EdgeInsets.only(right: 40.w),
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Container(
-            height: 280.h,
-            width: 280.w,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: CustomColors.neutral80,
-                  offset: const Offset(7, 7),
-                  blurRadius: 10.r,
-                  spreadRadius: 0.2.r,
-                ),
-              ],
-            ),
-            child: CachedImage(
-              url: recipe.url,
-              height: 280,
-              width: 280,
-            ),
-          ),
-          Positioned(
-            left: 20.w,
-            bottom: 25.h,
-            child: Container(
-              width: 240.w,
-              padding: EdgeInsets.all(16.h),
-              decoration: BoxDecoration(
-                color: CustomColors.pink,
-                borderRadius: BorderRadius.all(Radius.circular(16.r)),
-                boxShadow: [
-                  BoxShadow(
-                    color: CustomColors.neutral90,
-                    offset: const Offset(6, 8),
-                    blurRadius: 16.r,
-                    spreadRadius: 0.2.r,
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  Text(
-                    recipe.dishName,
-                    style: CustomTypography.uBold18,
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 8.h),
-                  Text(
-                    '"${recipe.desc}"',
-                    style: CustomTypography.uRegular14n40w,
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 12.h),
-                  Text(
-                    '${recipe.time} min',
-                    style: CustomTypography.uBold14,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

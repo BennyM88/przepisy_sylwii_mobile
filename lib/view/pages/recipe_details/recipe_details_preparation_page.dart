@@ -35,10 +35,10 @@ class _RecipeDetailsPreparationPageState
                 child: PageView.builder(
                   controller: _pageController,
                   itemCount: widget.recipe.preparation.length,
-                  itemBuilder: (_, index) => _preparationPage(
-                    index + 1,
-                    widget.recipe.preparation[index],
-                    widget.recipe.url,
+                  itemBuilder: (_, index) => _PreparationPage(
+                    index: index + 1,
+                    preparation: widget.recipe.preparation[index],
+                    url: widget.recipe.url,
                   ),
                 ),
               ),
@@ -83,7 +83,26 @@ class _RecipeDetailsPreparationPageState
     );
   }
 
-  Widget _preparationPage(int index, String preparation, String url) {
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+}
+
+class _PreparationPage extends StatelessWidget {
+  final int index;
+  final String preparation;
+  final String url;
+
+  const _PreparationPage({
+    required this.index,
+    required this.preparation,
+    required this.url,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
         SizedBox(height: 48.h),
@@ -128,11 +147,5 @@ class _RecipeDetailsPreparationPageState
         ),
       ],
     );
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
   }
 }
