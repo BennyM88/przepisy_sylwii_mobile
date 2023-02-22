@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
         ),
         backgroundColor: Colors.black,
         foregroundColor: Colors.white,
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
       body: SafeArea(
         child: Column(
