@@ -46,4 +46,8 @@ class FirebaseRepository {
         .doc(recipe.dishName)
         .delete();
   }
+
+  Future<void> addNewRecipe(Recipe recipe) async {
+    await CustomFirestorePaths.recipesPath.doc().set(recipe.toJson());
+  }
 }

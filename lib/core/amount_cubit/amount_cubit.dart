@@ -16,4 +16,8 @@ class AmountCubit extends Cubit<int> {
 
     emit(state - 1);
   }
+
+  void clear() {
+    emit(1);
+  }
 }

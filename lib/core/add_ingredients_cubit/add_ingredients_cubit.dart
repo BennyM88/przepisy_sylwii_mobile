@@ -26,4 +26,8 @@ class AddIngredientsCubit extends Cubit<AddIngredientsState> {
 
     emit(state.copyWith(ingredients: finalIngredients));
   }
+
+  void clear() {
+    emit(const AddIngredientsState());
+  }
 }

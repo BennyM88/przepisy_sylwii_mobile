@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
+import 'package:przepisy_sylwii_mobile/core/add_ingredients_cubit/add_ingredients_cubit.dart';
+import 'package:przepisy_sylwii_mobile/core/add_new_recipe_cubit/add_new_recipe_cubit.dart';
+import 'package:przepisy_sylwii_mobile/core/add_photo_cubit/add_photo_cubit.dart';
+import 'package:przepisy_sylwii_mobile/core/add_preparation_cubit/add_preparation_cubit.dart';
+import 'package:przepisy_sylwii_mobile/core/amount_cubit/amount_cubit.dart';
+import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/create_recipe/widgets/add_ingredients_section.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/create_recipe/widgets/add_photo_section.dart';
+import 'package:przepisy_sylwii_mobile/view/pages/create_recipe/widgets/add_preparation_section.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/create_recipe/widgets/amount_section.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/create_recipe/widgets/create_recipe_text_field_section.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/create_recipe/widgets/pick_category_section.dart';
+import 'package:przepisy_sylwii_mobile/view/utils/snackbar.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/custom_button.dart';
 import 'package:przepisy_sylwii_mobile/view/widgets/top_bar.dart';
 
@@ -73,14 +82,54 @@ class _CreateRecipePageState extends State<CreateRecipePage> {
                   },
                 ),
                 const AddIngredientsSection(),
-                SizedBox(height: 48.h),
-                CustomButton(content: 'Dodaj', onPressed: () {}, isPink: true),
+                const AddPreparationSection(),
+                SizedBox(height: 24.h),
+                BlocConsumer<AddNewRecipeCubit, AddNewRecipeState>(
+                  listener: (_, state) => state.whenOrNull(
+                    error: (errorMessage) async =>
+                        displaySnackBar(errorMessage!),
+                    success: () async {
+                      displaySnackBar('Dodano nowy przepis');
+                      clearFields();
+                      return null;
+                    },
+                  ),
+                  builder: (_, state) => state.maybeWhen(
+                    loading: () => CustomButton.loaderPink(),
+                    orElse: () => CustomButton(
+                      content: 'Dodaj',
+                      onPressed: () async =>
+                          getIt<AddNewRecipeCubit>().addNewRecipe(
+                        getIt<AddPhotoCubit>().getUrl(),
+                        titleController.text.trim(),
+                        descController.text.trim(),
+                        timeController.text.trim(),
+                        getIt<AmountCubit>().state,
+                        categoryValue,
+                        getIt<AddIngredientsCubit>().state.ingredients,
+                        getIt<AddPreparationCubit>().state.preparation,
+                      ),
+                      isPink: true,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 24.h),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  void clearFields() {
+    getIt<AddPhotoCubit>().deletePhoto();
+    titleController.clear();
+    descController.clear();
+    timeController.clear();
+    getIt<AmountCubit>().clear();
+    getIt<AddIngredientsCubit>().clear();
+    getIt<AddPreparationCubit>().clear();
   }
 
   @override

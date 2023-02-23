@@ -39,7 +39,13 @@ class AddPhotoCubit extends Cubit<AddPhotoState> {
     }
   }
 
-  Future<void> deletePhoto() async {
+  void deletePhoto() {
     emit(const AddPhotoState.initial());
+  }
+
+  String getUrl() {
+    String url = '';
+    state.whenOrNull(success: (imageUrl) => url = imageUrl);
+    return url;
   }
 }
