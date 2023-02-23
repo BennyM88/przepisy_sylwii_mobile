@@ -2,8 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
+import 'package:przepisy_sylwii_mobile/core/recipe_cubit/recipe_cubit.dart';
 import 'package:przepisy_sylwii_mobile/core/user_cubit/user_cubit.dart';
+import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/create_recipe/create_recipe_page.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/home/widgets/category_list.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/home/widgets/recipes_list.dart';
@@ -14,45 +17,55 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async => Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const CreateRecipePage(),
+    return RefreshIndicator(
+      color: CustomColors.neutral00,
+      backgroundColor: CustomColors.neutral100,
+      onRefresh: () async => getIt<RecipeCubit>().loadRecipes([]),
+      child: Scaffold(
+        floatingActionButton: getIt<UserCubit>().isUserAdmin()
+            ? FloatingActionButton(
+                onPressed: () async => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CreateRecipePage(),
+                  ),
+                ),
+                backgroundColor: Colors.black,
+                foregroundColor: Colors.white,
+                child: const Icon(Icons.add),
+              )
+            : null,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 28.h),
+                const _TopBar(),
+                SizedBox(height: 42.h),
+                Padding(
+                  padding: EdgeInsets.only(left: 24.w),
+                  child: Text(
+                    'Wybierz kategorie',
+                    style: CustomTypography.uRegular22,
+                  ),
+                ),
+                SizedBox(height: 16.h),
+                const CategoryList(),
+                SizedBox(height: 16.h),
+                const RecipesList(),
+                SizedBox(height: 16.h),
+                Padding(
+                  padding: EdgeInsets.only(left: 24.w),
+                  child: Text(
+                    'Najlepszy w tym tygodniu 🔥',
+                    style: CustomTypography.uRegular22,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.white,
-        child: const Icon(Icons.add),
-      ),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 28.h),
-            const _TopBar(),
-            SizedBox(height: 42.h),
-            Padding(
-              padding: EdgeInsets.only(left: 24.w),
-              child: Text(
-                'Wybierz kategorie',
-                style: CustomTypography.uRegular22,
-              ),
-            ),
-            SizedBox(height: 16.h),
-            const CategoryList(),
-            SizedBox(height: 16.h),
-            const RecipesList(),
-            SizedBox(height: 16.h),
-            Padding(
-              padding: EdgeInsets.only(left: 24.w),
-              child: Text(
-                'Najlepszy w tym tygodniu 🔥',
-                style: CustomTypography.uRegular22,
-              ),
-            ),
-          ],
         ),
       ),
     );

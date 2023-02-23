@@ -66,6 +66,12 @@ class UserCubit extends Cubit<UserState> {
     await GoogleSignIn().signOut();
   }
 
+  bool isUserAdmin() {
+    String? email = _firebaseAuthRepository.currentUser()?.email;
+    if (email == 'patryk.piatkowski.skygate@gmail.com') return true;
+    return false;
+  }
+
   @override
   Future<void> close() {
     _userSubscription?.cancel();
