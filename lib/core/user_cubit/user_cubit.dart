@@ -68,7 +68,8 @@ class UserCubit extends Cubit<UserState> {
 
   bool isUserAdmin() {
     String? email = _firebaseAuthRepository.currentUser()?.email;
-    if (email == 'patryk.piatkowski.skygate@gmail.com') return true;
+    if (email == 'patryk.piatkowski.skygate@gmail.com' ||
+        email == 'sylwia@kotrem.pl') return true;
     return false;
   }
 

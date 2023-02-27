@@ -23,7 +23,8 @@ class AddPhotoCubit extends Cubit<AddPhotoState> {
     final Reference childRef = ref.child('$uniqueFileName.jpg');
 
     final ImagePicker picker = ImagePicker();
-    final XFile? image = await picker.pickImage(source: imageSource);
+    final XFile? image =
+        await picker.pickImage(source: imageSource, imageQuality: 80);
 
     if (image != null) {
       File file = File(image.path);

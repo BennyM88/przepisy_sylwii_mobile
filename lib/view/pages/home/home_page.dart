@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
+import 'package:przepisy_sylwii_mobile/core/category_cubit/category_cubit.dart';
 import 'package:przepisy_sylwii_mobile/core/recipe_cubit/recipe_cubit.dart';
 import 'package:przepisy_sylwii_mobile/core/user_cubit/user_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
@@ -20,7 +21,10 @@ class HomePage extends StatelessWidget {
     return RefreshIndicator(
       color: CustomColors.neutral00,
       backgroundColor: CustomColors.neutral100,
-      onRefresh: () async => getIt<RecipeCubit>().loadRecipes([]),
+      onRefresh: () async {
+        getIt<RecipeCubit>().loadRecipes([]);
+        getIt<CategoryCubit>().clear();
+      },
       child: Scaffold(
         floatingActionButton: getIt<UserCubit>().isUserAdmin()
             ? FloatingActionButton(

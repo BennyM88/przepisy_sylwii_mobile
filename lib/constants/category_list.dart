@@ -1,7 +1,9 @@
 List<String> categoryList = [
-  'Wszystkie',
   'Śniadanie',
   'Obiad',
   'Deser',
-  'Pozostałe',
+  'Zupy',
+  'Sałatki',
+  'Ciasta',
+  'Kolacja',
 ];

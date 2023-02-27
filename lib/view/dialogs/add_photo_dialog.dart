@@ -54,6 +54,7 @@ class AddPhotoDialog extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(height: 24.h),
         ],
       ),
     );

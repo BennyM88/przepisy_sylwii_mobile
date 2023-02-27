@@ -18,4 +18,9 @@ class CategoryCubit extends Cubit<CategoryState> {
       CategoryState(category: category),
     );
   }
+
+  //TODO fix category
+  void clear() {
+    emit(CategoryState());
+  }
 }

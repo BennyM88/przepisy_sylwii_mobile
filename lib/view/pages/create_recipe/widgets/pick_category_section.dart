@@ -13,7 +13,7 @@ class PickCategorySection extends StatefulWidget {
 }
 
 class _PickCategorySectionState extends State<PickCategorySection> {
-  String _categoryValue = 'Wszystkie';
+  String _categoryValue = 'Obiad';
 
   @override
   Widget build(BuildContext context) {
