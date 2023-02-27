@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:przepisy_sylwii_mobile/constants/colors.dart';
 import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 
-class CustomTextField extends StatefulWidget {
+class CustomTextField extends StatelessWidget {
   final TextEditingController textEditingController;
   final String hintText;
   final bool isPassword;
@@ -20,18 +20,13 @@ class CustomTextField extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<CustomTextField> createState() => _CustomTextFieldState();
-}
-
-class _CustomTextFieldState extends State<CustomTextField> {
-  @override
   Widget build(BuildContext context) {
     return TextFormField(
-      enabled: widget.isEnabled,
+      enabled: isEnabled,
       style: CustomTypography.uRegular14,
-      controller: widget.textEditingController,
-      maxLength: widget.fieldMaxLength,
-      obscureText: widget.isPassword ? true : false,
+      controller: textEditingController,
+      maxLength: fieldMaxLength,
+      obscureText: isPassword ? true : false,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(16.r)),
@@ -44,9 +39,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
           borderRadius: BorderRadius.all(Radius.circular(16.r)),
           borderSide: const BorderSide(color: CustomColors.neutral90),
         ),
-        labelText: widget.hintText,
+        labelText: hintText,
         labelStyle: CustomTypography.uRegular14,
-        hintText: widget.hintText,
+        hintText: hintText,
         hintStyle: CustomTypography.uRegular14n70,
       ),
     );

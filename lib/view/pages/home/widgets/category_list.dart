@@ -6,18 +6,12 @@ import 'package:przepisy_sylwii_mobile/core/category_cubit/category_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/home/widgets/category_box.dart';
 
-class CategoryList extends StatefulWidget {
+class CategoryList extends StatelessWidget {
   const CategoryList({super.key});
 
   @override
-  State<CategoryList> createState() => _CategoryListState();
-}
-
-class _CategoryListState extends State<CategoryList> {
-  final List<String> _category = [];
-
-  @override
   Widget build(BuildContext context) {
+    final List<String> category = [];
     return Padding(
       padding: EdgeInsets.only(left: 24.w),
       child: SizedBox(
@@ -31,14 +25,14 @@ class _CategoryListState extends State<CategoryList> {
               itemCount: categoryList.length,
               itemBuilder: (_, index) => GestureDetector(
                 onTap: () async {
-                  String selectedCategory = categoryList[index];
-                  if (_category.contains(categoryList[index])) {
-                    _category
-                        .removeWhere((element) => element == selectedCategory);
+                  if (category.contains(categoryList[index])) {
+                    category.removeWhere(
+                      (element) => element == categoryList[index],
+                    );
                   } else {
-                    _category.add(categoryList[index]);
+                    category.add(categoryList[index]);
                   }
-                  getIt<CategoryCubit>().setValues(category: _category);
+                  getIt<CategoryCubit>().setValues(category: category);
                 },
                 child: CategoryBox(
                   categoryName: categoryList[index],
