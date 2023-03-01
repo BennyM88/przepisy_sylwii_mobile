@@ -10,7 +10,7 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:przepisy_sylwii_mobile/core/add_ingredients_cubit/add_ingredients_cubit.dart'
     as _i3;
 import 'package:przepisy_sylwii_mobile/core/add_new_recipe_cubit/add_new_recipe_cubit.dart'
-    as _i13;
+    as _i14;
 import 'package:przepisy_sylwii_mobile/core/add_photo_cubit/add_photo_cubit.dart'
     as _i4;
 import 'package:przepisy_sylwii_mobile/core/add_preparation_cubit/add_preparation_cubit.dart'
@@ -18,13 +18,13 @@ import 'package:przepisy_sylwii_mobile/core/add_preparation_cubit/add_preparatio
 import 'package:przepisy_sylwii_mobile/core/amount_cubit/amount_cubit.dart'
     as _i6;
 import 'package:przepisy_sylwii_mobile/core/category_cubit/category_cubit.dart'
-    as _i14;
-import 'package:przepisy_sylwii_mobile/core/change_pswd_cubit/change_pswd_cubit.dart'
     as _i15;
-import 'package:przepisy_sylwii_mobile/core/delete_acc_cubit/delete_acc_cubit.dart'
-    as _i18;
-import 'package:przepisy_sylwii_mobile/core/favorites_cubit/favorites_cubit.dart'
+import 'package:przepisy_sylwii_mobile/core/change_pswd_cubit/change_pswd_cubit.dart'
     as _i16;
+import 'package:przepisy_sylwii_mobile/core/delete_acc_cubit/delete_acc_cubit.dart'
+    as _i19;
+import 'package:przepisy_sylwii_mobile/core/favorites_cubit/favorites_cubit.dart'
+    as _i17;
 import 'package:przepisy_sylwii_mobile/core/forgot_pswd_cubit/forgot_pswd_cubit.dart'
     as _i9;
 import 'package:przepisy_sylwii_mobile/core/login_cubit/login_cubit.dart'
@@ -33,7 +33,9 @@ import 'package:przepisy_sylwii_mobile/core/recipe_cubit/recipe_cubit.dart'
     as _i11;
 import 'package:przepisy_sylwii_mobile/core/register_cubit/register_cubit.dart'
     as _i12;
-import 'package:przepisy_sylwii_mobile/core/user_cubit/user_cubit.dart' as _i17;
+import 'package:przepisy_sylwii_mobile/core/search_cubit/search_cubit.dart'
+    as _i13;
+import 'package:przepisy_sylwii_mobile/core/user_cubit/user_cubit.dart' as _i18;
 import 'package:przepisy_sylwii_mobile/services/firebase_auth_repository/firebase_auth_repository.dart'
     as _i7;
 import 'package:przepisy_sylwii_mobile/services/firebase_repository/firebase_repository.dart'
@@ -66,24 +68,27 @@ extension GetItInjectableX on _i1.GetIt {
         _i11.RecipeCubit(gh<_i8.FirebaseRepository>()));
     gh.singleton<_i12.RegisterCubit>(
         _i12.RegisterCubit(gh<_i7.FirebaseAuthRepository>()));
-    gh.singleton<_i13.AddNewRecipeCubit>(
-        _i13.AddNewRecipeCubit(gh<_i8.FirebaseRepository>()));
-    gh.singleton<_i14.CategoryCubit>(
-        _i14.CategoryCubit(gh<_i11.RecipeCubit>()));
-    gh.singleton<_i15.ChangePswdCubit>(
-        _i15.ChangePswdCubit(gh<_i7.FirebaseAuthRepository>()));
-    gh.singleton<_i16.FavoritesCubit>(_i16.FavoritesCubit(
+    gh.singleton<_i13.SearchCubit>(
+        _i13.SearchCubit(gh<_i8.FirebaseRepository>()));
+    gh.singleton<_i14.AddNewRecipeCubit>(
+        _i14.AddNewRecipeCubit(gh<_i8.FirebaseRepository>()));
+    gh.singleton<_i15.CategoryCubit>(
+        _i15.CategoryCubit(gh<_i11.RecipeCubit>()));
+    gh.singleton<_i16.ChangePswdCubit>(
+        _i16.ChangePswdCubit(gh<_i7.FirebaseAuthRepository>()));
+    gh.singleton<_i17.FavoritesCubit>(_i17.FavoritesCubit(
       gh<_i8.FirebaseRepository>(),
       gh<_i7.FirebaseAuthRepository>(),
     ));
-    gh.singleton<_i17.UserCubit>(_i17.UserCubit(
+    gh.singleton<_i18.UserCubit>(_i18.UserCubit(
       gh<_i7.FirebaseAuthRepository>(),
       gh<_i11.RecipeCubit>(),
-      gh<_i16.FavoritesCubit>(),
+      gh<_i17.FavoritesCubit>(),
+      gh<_i13.SearchCubit>(),
     ));
-    gh.singleton<_i18.DeleteAccCubit>(_i18.DeleteAccCubit(
+    gh.singleton<_i19.DeleteAccCubit>(_i19.DeleteAccCubit(
       gh<_i7.FirebaseAuthRepository>(),
-      gh<_i17.UserCubit>(),
+      gh<_i18.UserCubit>(),
     ));
     return this;
   }

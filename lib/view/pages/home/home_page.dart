@@ -11,6 +11,7 @@ import 'package:przepisy_sylwii_mobile/injection.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/create_recipe/create_recipe_page.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/home/widgets/category_list.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/home/widgets/recipes_list.dart';
+import 'package:przepisy_sylwii_mobile/view/pages/search/search_page.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/settings/settings_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -105,7 +106,12 @@ class _TopBar extends StatelessWidget {
               ),
               const Spacer(),
               InkWell(
-                onTap: () {},
+                onTap: () async => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SearchPage(),
+                  ),
+                ),
                 child: Icon(
                   CupertinoIcons.search,
                   size: 26.sp,

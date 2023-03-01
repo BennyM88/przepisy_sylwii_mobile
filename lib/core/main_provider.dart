@@ -10,6 +10,7 @@ import 'package:przepisy_sylwii_mobile/core/favorites_cubit/favorites_cubit.dart
 import 'package:przepisy_sylwii_mobile/core/login_cubit/login_cubit.dart';
 import 'package:przepisy_sylwii_mobile/core/recipe_cubit/recipe_cubit.dart';
 import 'package:przepisy_sylwii_mobile/core/register_cubit/register_cubit.dart';
+import 'package:przepisy_sylwii_mobile/core/search_cubit/search_cubit.dart';
 import 'package:przepisy_sylwii_mobile/core/user_cubit/user_cubit.dart';
 import 'package:przepisy_sylwii_mobile/injection.dart';
 
@@ -33,6 +34,7 @@ class MainProvider extends StatelessWidget {
         BlocProvider(create: (_) => getIt<AddIngredientsCubit>()),
         BlocProvider(create: (_) => getIt<AddPreparationCubit>()),
         BlocProvider(create: (_) => getIt<AddNewRecipeCubit>()),
+        BlocProvider(create: (_) => getIt<SearchCubit>()),
       ],
       child: child,
     );

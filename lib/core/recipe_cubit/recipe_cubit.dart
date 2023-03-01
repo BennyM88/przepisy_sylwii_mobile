@@ -15,9 +15,9 @@ class RecipeCubit extends Cubit<RecipeState> {
   RecipeCubit(this._firebaseRepository) : super(const RecipeState());
 
   Future<void> loadRecipes(List<String> categoryName) async {
-    try {
-      emit(const RecipeState(isLoading: true));
+    emit(const RecipeState(isLoading: true));
 
+    try {
       List<Recipe> allRecipes = await _firebaseRepository.getAllRecipes();
 
       if (categoryName.isEmpty) {

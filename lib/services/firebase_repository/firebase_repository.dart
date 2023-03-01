@@ -50,4 +50,17 @@ class FirebaseRepository {
   Future<void> addNewRecipe(Recipe recipe) async {
     await CustomFirestorePaths.recipesPath.doc().set(recipe.toJson());
   }
+
+  Future<List<Recipe>> searchRecipe(String keyword) async {
+    QuerySnapshot recipesSnapshot = await CustomFirestorePaths.recipesPath
+        .where('dishName', isGreaterThanOrEqualTo: keyword)
+        .where('dishName', isLessThanOrEqualTo: '$keyword\uf7ff')
+        .get();
+
+    List<Recipe> searchRecipes = recipesSnapshot.docs
+        .map((doc) => Recipe.fromJson(doc.data() as Map<String, dynamic>))
+        .toList();
+
+    return searchRecipes;
+  }
 }

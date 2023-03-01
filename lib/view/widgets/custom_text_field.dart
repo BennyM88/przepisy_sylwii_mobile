@@ -8,7 +8,8 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final bool isPassword;
   final bool isEnabled;
-  final int? fieldMaxLength;
+  final Icon? suffixIcon;
+  final void Function(String)? onChanged;
 
   const CustomTextField({
     Key? key,
@@ -16,7 +17,8 @@ class CustomTextField extends StatelessWidget {
     required this.hintText,
     this.isPassword = false,
     this.isEnabled = true,
-    this.fieldMaxLength,
+    this.suffixIcon,
+    this.onChanged,
   }) : super(key: key);
 
   @override
@@ -25,8 +27,8 @@ class CustomTextField extends StatelessWidget {
       enabled: isEnabled,
       style: CustomTypography.uRegular14,
       controller: textEditingController,
-      maxLength: fieldMaxLength,
       obscureText: isPassword ? true : false,
+      onChanged: onChanged,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(16.r)),
@@ -43,6 +45,7 @@ class CustomTextField extends StatelessWidget {
         labelStyle: CustomTypography.uRegular14,
         hintText: hintText,
         hintStyle: CustomTypography.uRegular14n70,
+        suffixIcon: suffixIcon,
       ),
     );
   }

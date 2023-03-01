@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:przepisy_sylwii_mobile/constants/typography.dart';
 import 'package:przepisy_sylwii_mobile/core/recipe_cubit/recipe_cubit.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/home/widgets/recipe_box.dart';
 import 'package:przepisy_sylwii_mobile/view/pages/home/widgets/recipes_list_shimmer.dart';
@@ -18,7 +19,12 @@ class RecipesList extends StatelessWidget {
         child: BlocBuilder<RecipeCubit, RecipeState>(
           builder: (_, state) {
             if (state.isLoading) return const RecipesListShimmer();
-            if (state.errorMessage != null) return Text(state.errorMessage!);
+            if (state.errorMessage != null) {
+              return Text(
+                state.errorMessage!,
+                style: CustomTypography.uRegular12red,
+              );
+            }
             return ListView.builder(
               shrinkWrap: true,
               physics: const ClampingScrollPhysics(),
