@@ -7,20 +7,30 @@ part 'category_state.dart';
 @singleton
 class CategoryCubit extends Cubit<CategoryState> {
   final RecipeCubit _recipeCubit;
+  List<String> pickedCategory = [];
 
   CategoryCubit(this._recipeCubit) : super(CategoryState());
 
   Future<void> setValues({
-    required List<String> category,
+    required String category,
   }) async {
-    _recipeCubit.loadRecipes(category);
+    if (pickedCategory.contains(category)) {
+      pickedCategory.removeWhere(
+        (element) => element == category,
+      );
+    } else {
+      pickedCategory.add(category);
+    }
+
+    _recipeCubit.loadRecipes(pickedCategory);
+
     emit(
-      CategoryState(category: category),
+      CategoryState(category: pickedCategory),
     );
   }
 
-  //TODO fix category
   void clear() {
+    pickedCategory = [];
     emit(CategoryState());
   }
 }

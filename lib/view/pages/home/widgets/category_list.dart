@@ -11,7 +11,6 @@ class CategoryList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> category = [];
     return Padding(
       padding: EdgeInsets.only(left: 24.w),
       child: SizedBox(
@@ -24,16 +23,8 @@ class CategoryList extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: categoryList.length,
               itemBuilder: (_, index) => GestureDetector(
-                onTap: () async {
-                  if (category.contains(categoryList[index])) {
-                    category.removeWhere(
-                      (element) => element == categoryList[index],
-                    );
-                  } else {
-                    category.add(categoryList[index]);
-                  }
-                  getIt<CategoryCubit>().setValues(category: category);
-                },
+                onTap: () async => getIt<CategoryCubit>()
+                    .setValues(category: categoryList[index]),
                 child: CategoryBox(
                   categoryName: categoryList[index],
                   state: state,
