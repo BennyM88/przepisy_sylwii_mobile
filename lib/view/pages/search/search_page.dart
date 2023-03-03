@@ -18,7 +18,14 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   final TextEditingController searchController = TextEditingController();
+  final SearchState state = const SearchState();
   Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    if (state.searchedRecipes.isEmpty) getIt<SearchCubit>().init();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -20,6 +20,12 @@ class SearchRecipesList extends StatelessWidget {
               style: CustomTypography.uRegular12red,
             );
           }
+          if (state.searchedRecipes.isEmpty) {
+            return Text(
+              'Niestety nie mamy tego czego szukasz',
+              style: CustomTypography.uRegular16,
+            );
+          }
           return ListView.builder(
             itemCount: state.searchedRecipes.length,
             shrinkWrap: true,
