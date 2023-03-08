@@ -45,18 +45,19 @@ dev_dependencies:
 
 flutter_native_splash:
   color: '#FFFFFF'
-  image: 'assets/images/splash_logo.png'
+  image: 'assets/images/splash.png'
+  web: false
   android_12:
     color: '#FFFFFF'
-    image: 'assets/images/splash_logo.png'
+    image: 'assets/images/splash.png'
 
 flutter_icons:
   android: true
   ios: true
   remove_alpha_ios: true
-  image_path: "assets/images/logo.png"
-  adaptive_icon_background: "assets/images/logo_background.png"
-  adaptive_icon_foreground: "assets/images/logo_foreground.png"
+  image_path: 'assets/images/logo.png'
+  adaptive_icon_background: 'assets/images/logo_background.png'
+  adaptive_icon_foreground: 'assets/images/logo_foreground.png'
 
 flutter:
   uses-material-design: true
